@@ -1,0 +1,1 @@
+CREATE TABLE route (id SERIAL PRIMARY KEY, flight_number VARCHAR(255), departure VARCHAR(255), destination VARCHAR(255));
