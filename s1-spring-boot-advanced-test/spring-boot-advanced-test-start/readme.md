@@ -11,7 +11,7 @@ public class TestRouteController {
 
 ```
 
-## BeforeAll & Before 
+## BeforeAll & BeforeEach vs. BeforeCalss & BeforeEach
 
 ```java
 	
@@ -23,21 +23,11 @@ public class TestRouteController {
         System.out.println("Before all test methods");
     }
  
-    @Before
-    static void before() {
+    @BeforeEach
+    static void beforeEcha() {
         System.out.println("After all test methods");
     }
 	
-}
-
-```
-
-## Display Name 
-
-```java
-@Test
-@DisplayName("Checking if context is loaded with beans")
-public void contextLoad() {
 }
 
 ```
@@ -101,15 +91,22 @@ public void contextLoad() {
 	} 
 ```
 
+```java
+<configuration>
+	<excludes>
+		<exclude>doNothing</exclude>
+	</excludes>
+</configuration>
+```
 
 ## @EnabledOnOs 
 Es gibt eine Menge mehr an Enabling Annotationen. Annotation im Source Code zeigen, dann sieht man die anderen 
 
 ```java
-@Test
+	@Test
 	@EnabledOnOs(OS.MAC)
 	public void checkMacOs() {
-		Assertions.assertTrue(false);
+		Assertions.assertTrue(ture); // on Windows!!
 	} 
 
 ```
