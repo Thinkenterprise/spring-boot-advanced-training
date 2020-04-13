@@ -1,0 +1,34 @@
+spring:
+   jta:
+      enabled: true
+      atomikos:
+         properties:
+            max-timeout: 900000
+        
+   domain-datasource:
+      jdbc-url: jdbc:h2:mem:domain-db;DB_CLOSE_ON_EXIT=FALSE
+      driverClassName: org.h2.Driver
+      type: org.h2.jdbcx.JdbcDataSource
+      username: sa
+      password: password
+      jpa:
+         database-platform: org.hibernate.dialect.H2Dialect
+         hibernate:
+            ddl-auto: create-drop
+      h2:
+         console:
+            enabled: true
+            
+   analytics-datasource:
+      jdbc-url: jdbc:h2:mem:analytics-db;DB_CLOSE_ON_EXIT=FALSE
+      driverClassName: org.h2.Driver
+      type: org.h2.jdbcx.JdbcDataSource
+      username: sa
+      password: password
+      jpa:
+         database-platform: org.hibernate.dialect.H2Dialect
+         hibernate:
+            ddl-auto: create-drop
+      h2:
+         console:
+            enabled: true
