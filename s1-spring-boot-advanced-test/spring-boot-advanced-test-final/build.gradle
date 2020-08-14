@@ -24,5 +24,7 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
+	useJUnitPlatform{
+		excludeTags 'doNothing'
+	}
 }
