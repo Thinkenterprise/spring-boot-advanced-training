@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import com.thinkenterprise.repository.RouteRepository;
 
 @DataJpaTest
-@ComponentScan("com.thinkenterprise")
 public class TestRouteRepositoryWithSlice {
 	
 	@Test

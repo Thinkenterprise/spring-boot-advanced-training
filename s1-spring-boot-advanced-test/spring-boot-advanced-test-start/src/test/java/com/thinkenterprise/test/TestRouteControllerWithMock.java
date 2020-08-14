@@ -1,31 +1,28 @@
 package com.thinkenterprise.test;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.thinkenterprise.controller.RouteController;
 import com.thinkenterprise.service.RouteService;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class TestRouteControllerWithMock {
 
 	
 	@MockBean
-	private static RouteService routeService;
+	private RouteService routeService;
 
-	@BeforeAll
-	public static void setup() {
-		Mockito.when(routeService.count()).thenReturn(10L);
-	}
 	
 	
 	@Test
 	public void checkRouteRepositoryWithAutowire(@Autowired RouteController routeController) {
+		Mockito.when(routeService.count()).thenReturn(10L);
 		Long result = routeController.count();
 		Assertions.assertTrue(result==10);
 	} 

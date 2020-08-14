@@ -21,18 +21,23 @@
 package com.thinkenterprise.domain.route;
 
 
-import com.thinkenterprise.domain.core.AbstractEntity;
-
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import java.time.DayOfWeek;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Transient;
+
+import com.thinkenterprise.domain.core.AbstractEntity;
 
 
 @Entity

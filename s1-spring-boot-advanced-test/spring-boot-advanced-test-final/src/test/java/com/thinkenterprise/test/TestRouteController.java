@@ -1,6 +1,5 @@
 package com.thinkenterprise.test;
 
-import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,7 +18,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.MethodMode;
 import org.springframework.test.context.junit.jupiter.EnabledIf;
 
-import com.thinkenterprise.controller.RouteController;
 import com.thinkenterprise.domain.route.Route;
 import com.thinkenterprise.repository.RouteRepository;
 
@@ -32,7 +30,7 @@ public class TestRouteController {
         System.out.println("Before all test methods");
     }
  
-    @Before
+   @AfterAll
     static void before() {
         System.out.println("After all test methods");
     }

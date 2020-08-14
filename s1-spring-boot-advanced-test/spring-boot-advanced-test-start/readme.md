@@ -55,31 +55,6 @@ public void contextLoad() {
 
 ```
 
-
-## Qualifier 
-
-```java
-@Test
-	@DisplayName("Checking if repository is loaded with data by @Qualifier")
-	@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
-	public void checkRouteRepositoryWithQualifier(@Qualifier("routeRepository") RouteRepository routeRepository) {
-		Assertions.assertTrue(routeRepository.count()>0);
-	} 
-```
-
-
-## Properties   
-
-```java
-	@Test
-	@DisplayName("Checking property route count == 4")
-	@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
-	public void checkRouteRepositoryWithQualifier(@Value("${route.count}") float count) {
-		Assertions.assertTrue(count == 4);
-	} 
-
-```
-
 ## Tag 
 ```java
 
@@ -92,11 +67,13 @@ public void contextLoad() {
 ```
 
 ```java
-<configuration>
-	<excludes>
-		<exclude>doNothing</exclude>
-	</excludes>
-</configuration>
+ 	<configuration>
+		<excludedGroups>doNothing</excludedGroups>
+	</configuration>
+	
+	>mvn clean package -DexcludedGroups="slow"
+	
+	Eclipse run Configuration 
 ```
 
 ## @EnabledOnOs 
