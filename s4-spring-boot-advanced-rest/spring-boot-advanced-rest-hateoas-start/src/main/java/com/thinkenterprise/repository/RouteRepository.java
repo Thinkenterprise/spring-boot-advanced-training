@@ -19,14 +19,13 @@
 
 package com.thinkenterprise.repository;
 
-import com.thinkenterprise.domain.route.Route;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(path = "transfers", collectionResourceRel = "transfers")
+import com.thinkenterprise.domain.route.Route;
+
+
 public interface RouteRepository extends PagingAndSortingRepository<Route, Long> {
 
     @Query("select r from Route r where r.departure = :departure")
