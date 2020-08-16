@@ -21,50 +21,29 @@
 package com.thinkenterprise;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextStoppedEvent;
-import org.springframework.data.redis.core.RedisTemplate;
-
-import com.thinkenterprise.domain.route.Route;
-
-import redis.embedded.RedisServer;
 
 @SpringBootApplication
 public class Application implements ApplicationRunner, ApplicationListener<ApplicationEvent> {
 
-	@Autowired
-	RedisTemplate<String, Route> redisTemplate;
-	
-	static RedisServer redisServer;
-	
 	
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-       
+    
     }
 
 	public void run(ApplicationArguments args) throws Exception {
-		
-		redisServer = new RedisServer(6379); 
-		redisServer.start();
-			
-		redisTemplate.opsForValue().set(String.valueOf(1L), new Route(1L,"LH7902","MUC","IAH"));
-		redisTemplate.opsForValue().set(String.valueOf(2L), new Route(2L,"LH1602","MUC","IBZ"));
-		redisTemplate.opsForValue().set(String.valueOf(3L), new Route(3L,"LH401","FRA","NYC"));
 		
 	}
 
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		 
-		if(event instanceof  ContextStoppedEvent)
-			redisServer.stop();
 		
 	}
 	

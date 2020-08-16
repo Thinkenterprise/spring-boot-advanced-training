@@ -5,6 +5,62 @@ Die Fluggesellschaft möchte die Implementierung des Route-Service auf einen dir
 1. Implementieren Sie das RouteRepository für JPA, Mongo oder Redis.
 2. Führe Sie einen Test ein.
 
+## Mongo Starter hinzufügen 
+
+```
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-mongodb</artifactId>
+	</dependency>
+
+```
+
+## Mongo Transaction Manager 
+
+```java
+
+@Configuration
+public class MongoConfiguration {
+	
+	@Bean
+	public MongoTransactionManager transactionManager(MongoDbFactory mongoDbFactory) {
+		return new MongoTransactionManager(mongoDbFactory);
+		
+	}
+
+}
+```
+
+## Mongo Database initialisieren 
+
+
+```java
+
+
+@SpringBootApplication
+public class Application implements ApplicationRunner {
+
+	@Autowired
+	MongoTemplate mongoTemplate;
+	
+	@Autowired
+	MongoTransactionManager mongoTransactionManager;
+	
+	
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+	public void run(ApplicationArguments args) throws Exception {
+		
+		mongoTemplate.insert(new Route("LH7902","MUC","IAH"));
+		mongoTemplate.insert(new Route("LH1602","MUC","IBZ"));
+		mongoTemplate.insert(new Route("LH401","FRA","NYC"));
+
+	}
+	
+}
+```
 
 
 ## Repository Implementieren 
@@ -46,8 +102,11 @@ public class MongoRouteRepository implements RouteRepository {
 
 ```
 
-## Test schreiben 
 
+
+
+
+## Test schreiben 
 
 
 

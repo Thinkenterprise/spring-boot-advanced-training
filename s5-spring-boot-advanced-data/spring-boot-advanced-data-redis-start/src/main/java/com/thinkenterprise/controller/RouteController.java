@@ -29,14 +29,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.redis.RedisRouteRepository;
+import com.thinkenterprise.repository.redis.RouteRepository;
 
 @RestController
 @RequestMapping("/routes")
 public class RouteController {
 	
 	@Autowired
-	private RedisRouteRepository redisRouteRepository;
+	private RouteRepository redisRouteRepository;
 	
 	@RequestMapping
 	public List<Route> getAll() {

@@ -21,26 +21,14 @@
 package com.thinkenterprise;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.mongo.MongoClientFactory;
-import org.springframework.data.mongodb.MongoTransactionManager;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.transaction.PlatformTransactionManager;
-
-import com.thinkenterprise.domain.route.Route;
 
 @SpringBootApplication
 public class Application implements ApplicationRunner {
 
-	@Autowired
-	MongoTemplate mongoTemplate;
-	
-	@Autowired
-	MongoTransactionManager mongoTransactionManager;
 	
 	
     public static void main(String[] args) {
@@ -49,9 +37,7 @@ public class Application implements ApplicationRunner {
 
 	public void run(ApplicationArguments args) throws Exception {
 		
-		mongoTemplate.insert(new Route("LH7902","MUC","IAH"));
-		mongoTemplate.insert(new Route("LH1602","MUC","IBZ"));
-		mongoTemplate.insert(new Route("LH401","FRA","NYC"));
+		
 
 	}
 	
