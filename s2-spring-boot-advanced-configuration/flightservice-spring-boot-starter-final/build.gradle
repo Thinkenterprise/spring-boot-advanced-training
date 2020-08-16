@@ -1,0 +1,21 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+}
+
+version = '0.0.1-SNAPSHOT'
+targetCompatibility = 1.8
+sourceCompatibility = '1.8'
+
+repositories {
+maven { url "http://repo.spring.io/release" }
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'com.thinkenterprise:spring-boot-starter-web:s2-flightservice-spring-boot-autoconfigure-start:0.0.1-SNAPSHOT'
+
+}

@@ -13,7 +13,7 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.2.0.RELEASE</version>
+				<version>2.3.0.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -29,30 +29,25 @@
 	</properties>
 
 	<dependencies>
-	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>com.thinkenterprise</groupId>
 			<artifactId>s2-flightservice</artifactId>
 			<version>${flightservice.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -63,6 +58,17 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>spring-repo</id>
+			<name>Spring Repository</name>
+			<url>http://repo.spring.io/release</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 
 
 </project>

@@ -30,7 +30,7 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.2.0.RELEASE</version>
+				<version>2.3.0.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -55,7 +55,7 @@
 			 <groupId>com.thinkenterprise</groupId>
    			 <artifactId>s2-flightservice-spring-boot-starter-final</artifactId>
    			 <version>${flightservice.version}</version>
-		</dependency>	
+		</dependency>
 	</dependencies>
 
 	<build>
