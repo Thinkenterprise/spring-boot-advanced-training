@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java" deleted="false" description="test afterAll" enabled="true" name="test afterAll">@AfterAll
+static void afterAll() {
+    System.out.println("After all test methods");
+}</template><template autoinsert="true" context="java" deleted="false" description="test beforeAll" enabled="true" name="test beforeAll"> @BeforeAll
+ static void beforeAll() {
+      System.out.println("Before all test methods");
+ }</template><template autoinsert="true" context="java" deleted="false" description="test checkConditional" enabled="true" name="test checkConditional">@Test
+@EnabledIf(expression="false")
+public void checkConditional() {
+	Assertions.assertTrue(false);
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkExclude" enabled="true" name="test checkExclude">@Test
+@Tag("doNothing")
+public void checkExclude() {
+	System.out.println("doNoting");
+	Assertions.assertTrue(true);
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkExcludeTest" enabled="true" name="test checkExcludeTest">@Test
+@Tag("doNothing")
+public void checkExcludeTest() {
+	System.out.println("doNoting");
+	Assertions.assertTrue(true);
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkMacOs" enabled="true" name="test checkMacOs">@Test
+@EnabledOnOs(OS.MAC)
+public void checkMacOs() {
+	Assertions.assertTrue(false);
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkProperties" enabled="true" name="test checkProperties">@Test
+@DisplayName("Checking property route count == 4")
+@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
+public void checkProperties(@Value("") float count) {
+	Assertions.assertTrue(count == 4);
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkRestTemplateWithAutowire" enabled="true" name="test checkRestTemplateWithAutowire">@Test
+@DisplayName("Checking if repository is loaded with data by Autowire")
+@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
+public void checkRestTemplateWithAutowire(@Autowired TestRestTemplate restTemplate) {
+	Iterable&lt;Route&gt; iterable = restTemplate.getForObject("/routes", Iterable.class);
+	Assertions.assertTrue(iterable.iterator().hasNext());
+} </template><template autoinsert="true" context="java" deleted="false" description="test checkRouteRepositoryWithQualifier" enabled="true" name="test checkRouteRepositoryWithQualifier">@Test
+@DisplayName("Checking if repository is loaded with data by @Qualifier")
+@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
+public void checkRouteRepositoryWithQualifier(@Qualifier("routeRepository") RouteRepository routeRepository) {
+	Assertions.assertTrue(routeRepository.count()&gt;0);
+} </template><template autoinsert="true" context="java" deleted="false" description="test contextLoad" enabled="true" name="test contextLoad">@Test
+@DisplayName("Checking if context is loaded with beans")
+public void contextLoad() {
+}</template></templates>

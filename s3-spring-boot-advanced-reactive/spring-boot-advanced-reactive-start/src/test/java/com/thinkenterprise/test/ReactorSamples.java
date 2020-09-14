@@ -36,15 +36,17 @@ public class ReactorSamples {
 
 	protected static Logger log = LoggerFactory.getLogger(ReactorSamples.class);
 
-	@Test
-	public void createFluxWithJust() {
-		
-	}
-
+	
+	
+	
 	@Test
 	public void createFluxWithEmpty() {
-
+		@SuppressWarnings("unused")
+		Flux<String> flux = Flux.empty();
 	}
+
+
+	
 
 	@Test
 	public void createFluxWithfromArray() {

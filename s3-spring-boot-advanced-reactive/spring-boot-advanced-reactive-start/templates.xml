@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="javadoc" deleted="false" description="&lt;code&gt;&lt;/code&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.code_tag" name="&lt;code&gt;">&lt;code&gt;${word_selection}${}&lt;/code&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;i&gt;&lt;/i&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.i_tag" name="&lt;i&gt;">&lt;i&gt;${word_selection}${}&lt;/i&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="&lt;pre&gt;&lt;/pre&gt;" enabled="true" id="org.eclipse.jdt.ui.templates.pre_tag" name="&lt;pre&gt;">&lt;pre&gt;${word_selection}${}&lt;/pre&gt;${cursor}</template><template autoinsert="true" context="javadoc" deleted="false" description="active task" enabled="true" id="org.eclipse.mylyn.ide.ui.template.activeTask" name="active_task">${activeTaskPrefix}${activeTaskKey}</template><template autoinsert="false" context="swt-statements" deleted="false" description="add a listener to a Widget " enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.addlistener" name="addlistener">${control:var(org.eclipse.swt.widgets.Widget)}.addListener(${type:link(
+	SWT.Activate,
+	SWT.Arm,
+	SWT.Close,
+	SWT.Collapse,
+	SWT.Deactivate,
+	SWT.DefaultSelection,
+	SWT.Deiconify,
+	SWT.Dispose,
+	SWT.DragDetect,
+	SWT.EraseItem,
+	SWT.Expand,
+	SWT.FocusIn,
+	SWT.FocusOut,
+	SWT.HardKeyDown,
+	SWT.HardKeyUp,
+	SWT.Help,
+	SWT.Hide,
+	SWT.Iconify,
+	SWT.ImeComposition,
+	SWT.KeyDown,
+	SWT.KeyUp,
+	SWT.MeasureItem,
+	SWT.MenuDetect,
+	SWT.Modify,
+	SWT.MouseDoubleClick,
+	SWT.MouseDown,
+	SWT.MouseEnter,
+	SWT.MouseExit,
+	SWT.MouseHover,
+	SWT.MouseMove,
+	SWT.MouseUp,
+	SWT.MouseWheel,
+	SWT.Move,
+	SWT.Paint,
+	SWT.PaintItem,
+	SWT.Resize,
+	SWT.Selection,
+	SWT.SetData,
+	SWT.Settings,
+	SWT.Show,
+	SWT.Traverse,
+	SWT.Verify)}, new ${listener:newType(org.eclipse.swt.widgets.Listener)}(){
+	public void handleEvent(${event:newType(org.eclipse.swt.widgets.Event)} e) {
+		${imp:import(org.eclipse.swt.SWT)}${cursor}				
+	}
+});</template><template autoinsert="false" context="java-statements" deleted="false" description="add an element to an array" enabled="true" id="org.eclipse.jdt.ui.templates.arrayadd" name="arrayadd">${array_type}[] ${result:newName(array)} = new ${array_type}[${array}.length + 1];
+System.arraycopy(${array}, 0, ${result}, 0, ${array}.length);
+${result}[${array}.length]= ${var};</template><template autoinsert="false" context="java-statements" deleted="false" description="merge two arrays into one" enabled="true" id="org.eclipse.jdt.ui.templates.arraymerge" name="arraymerge">${array_type}[] ${result:newName(array1)} = new ${array_type}[${array1:array}.length + ${array}.length];
+System.arraycopy(${array1}, 0, ${result}, 0, ${array1}.length);
+System.arraycopy(${array}, 0, ${result}, ${array1}.length, ${array}.length);</template><template autoinsert="true" context="java" deleted="false" description="Apache Copyright License embedded in Java Comments" enabled="true" id="org.springframework.ide.eclipse.boot.templates.license.apache" name="asl">
+/*
+ * Copyright ${year} the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+</template><template autoinsert="false" context="swt-statements" deleted="false" description="new Browser" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.swt.browser" name="Browser">${browserType:newType(org.eclipse.swt.browser.Browser)} ${browser:newName(org.eclipse.swt.browser.Browser)}= new ${browserType}(${parent:var(org.eclipse.swt.widgets.Composite)}, ${style:link(SWT.NONE, SWT.WEBKIT)});
+${browser}.setLayoutData(new ${gridDataType:newType(org.eclipse.swt.layout.GridData)}(SWT.${horizontal:link(FILL, BEGINNING, CENTER, END)}, SWT.${vertical:link(FILL, TOP, CENTER, BOTTOM)}, ${hex:link(true, false)}, ${vex:link(true, false)}));
+${browser}.setUrl(${word_selection}${});
+${imp:import(org.eclipse.swt.SWT)}${cursor}</template></templates>

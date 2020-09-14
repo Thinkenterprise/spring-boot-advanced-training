@@ -30,8 +30,8 @@ public class TestRouteController {
         System.out.println("Before all test methods");
     }
  
-   @AfterAll
-    static void before() {
+    @AfterAll
+    static void afterAll() {
         System.out.println("After all test methods");
     }
 	
@@ -43,7 +43,7 @@ public class TestRouteController {
 	@Test
 	@DisplayName("Checking if repository is loaded with data by Autowire")
 	@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
-	public void checkRouteRepositoryWithAutowire(@Autowired TestRestTemplate restTemplate) {
+	public void checkRestTemplateWithAutowire(@Autowired TestRestTemplate restTemplate) {
 		Iterable<Route> iterable = restTemplate.getForObject("/routes", Iterable.class);
 		Assertions.assertTrue(iterable.iterator().hasNext());
 	} 
@@ -58,21 +58,21 @@ public class TestRouteController {
 	@Test
 	@DisplayName("Checking property route count == 4")
 	@DirtiesContext(methodMode=MethodMode.BEFORE_METHOD)
-	public void checkRouteRepositoryWithQualifier(@Value("${route.count}") float count) {
+	public void checkProperties(@Value("${route.count}") float count) {
 		Assertions.assertTrue(count == 4);
 	} 
 	
 	
 	@Test
 	@Tag("doNothing")
-	public void checkExcludeTest() {
+	public void checkExclude() {
 		System.out.println("doNoting");
 		Assertions.assertTrue(true);
 	} 
 		
 	@Test
 	@EnabledIf(expression="false")
-	public void checkConditionalTest() {
+	public void checkConditional() {
 		Assertions.assertTrue(false);
 	} 
 	

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+	<template autoinsert="true" context="java" deleted="false"
+		description="createFluxWithJust" enabled="true"
+		name="createFluxWithJust">
+		@Test
+		public void createFluxWithJust() {
+		@SuppressWarnings("unused")
+		Flux&lt;String&gt; flux = Flux.just("Hello", "world");
+		}
+	</template>
+	<template autoinsert="true" context="java" deleted="false"
+		description="createFluxWithEmpty" enabled="true"
+		name="createFluxWithEmpty">
+		@Test
+	    public void createFluxWithEmpty() {
+		 @SuppressWarnings("unused")
+		 Flux&lt;String&gt; flux = Flux.empty();
+	    }
+	</template>
+
+</templates>

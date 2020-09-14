@@ -10,5 +10,5 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 @Profile("nonReactive")
 public class OAuth2JWTSecurityConfiguration extends GlobalMethodSecurityConfiguration  {
-      
+       
 }
