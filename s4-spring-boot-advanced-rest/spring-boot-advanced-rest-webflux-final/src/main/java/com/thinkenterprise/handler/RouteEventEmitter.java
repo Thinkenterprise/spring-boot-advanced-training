@@ -16,8 +16,14 @@
  *
  * @author Michael Schaefer
  */
+
 package com.thinkenterprise.handler;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.stream.Stream;
+
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -28,15 +34,17 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
-public class RouteHandler {
+public class RouteEventEmitter {
 
-
-	public Mono<ServerResponse> routes(ServerRequest serverRequest) {
+		public Mono<ServerResponse> startEmitter(ServerRequest serverRequest) {
+			return ServerResponse.ok().contentType(MediaType.TEXT_EVENT_STREAM).body(body(), Route.class);
+		}
 		
-		return ServerResponse.ok().body(Flux.just(new Route("LH7902","MUC","IAH"), 
-												  new Route("LH1602","MUC","IBZ"), 
-												  new Route("LH401","FRA","NYC")), Route.class);
+		Flux<Route> body() {
+			
+			 Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
+	         Flux<Route> events = Flux.fromStream(Stream.generate(()->new Route("LH" +LocalDateTime.now(),"FRA","NYC")));
+	         return Flux.zip(events, interval, (key, value) -> key);
+		}
 		
-	}
-	
 }

@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import com.thinkenterprise.handler.RouteEventEmitter;
 import com.thinkenterprise.handler.RouteHandler;
 
 @Configuration
@@ -18,11 +19,17 @@ public class ReativeFunctionalMethodConfiguration {
 	@Autowired
 	private RouteHandler routeHandler;
 	
-	@Bean
-	public RouterFunction<ServerResponse> trackingsFunctionMethod() {
+	@Autowired
+	private RouteEventEmitter routeEventEmitter;
 	
-		return RouterFunctions.route(RequestPredicates.GET("/routes"), routeHandler::routes);
-				
+	@Bean
+	public RouterFunction<ServerResponse> routesFunctionMethod() {
+		return RouterFunctions.route(RequestPredicates.GET("/routes"), routeHandler::routes);			
+	}
+	
+	@Bean
+	public RouterFunction<ServerResponse> startEmitterFunctionMethod() {
+		return RouterFunctions.route(RequestPredicates.GET("/startEmitter"), routeEventEmitter::startEmitter);		
 	}
 
 
