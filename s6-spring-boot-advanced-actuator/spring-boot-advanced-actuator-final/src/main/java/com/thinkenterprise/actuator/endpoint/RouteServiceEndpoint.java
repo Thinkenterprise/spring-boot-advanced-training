@@ -21,6 +21,7 @@ package com.thinkenterprise.actuator.endpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.stereotype.Component;
 
 import com.thinkenterprise.service.RouteService;
@@ -37,5 +38,18 @@ public class RouteServiceEndpoint {
 	public Boolean getServiceStatus() {
 		return routeService.getServiceStatus();
 	}
+	
+	// Its only working if the compiler store parameter infos see here 
+	// https://github.com/spring-projects/spring-boot/issues/13261
+	@ReadOperation
+	public Boolean getServiceStatus(@Selector Boolean parameter) {
+		return parameter;
+	}
+	
+	// I Did`nt found information about Query Parameter It works with @RequestParam but that comes from the mvc module :-(
+	
+	
+	
+	
 	
 }

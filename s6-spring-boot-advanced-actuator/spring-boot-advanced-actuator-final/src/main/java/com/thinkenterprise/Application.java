@@ -20,12 +20,13 @@
 package com.thinkenterprise;
 
 
-import com.thinkenterprise.service.RouteService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+
+import com.thinkenterprise.service.RouteService;
 
 @SpringBootApplication
 @EnableScheduling
