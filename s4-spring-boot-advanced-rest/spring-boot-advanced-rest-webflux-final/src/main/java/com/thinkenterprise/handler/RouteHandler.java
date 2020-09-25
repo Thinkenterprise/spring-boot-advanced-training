@@ -18,6 +18,11 @@
  */
 package com.thinkenterprise.handler;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.stream.Stream;
+
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -33,10 +38,21 @@ public class RouteHandler {
 
 	public Mono<ServerResponse> routes(ServerRequest serverRequest) {
 		
-		return ServerResponse.ok().body(Flux.just(new Route("LH7902","MUC","IAH"), 
-		         											new Route("LH1602","MUC","IBZ"), 
-		         											new Route("LH401","FRA","NYC")), Route.class);
+		return ServerResponse.ok().contentType(MediaType.TEXT_EVENT_STREAM).body(body(), Route.class);
 		
 	}
+	
+	
+	Flux<Route> body() {
+		
+		 Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
+         Flux<Route> events = 
+                                   Flux
+                                     .fromStream(Stream.generate(()->new Route("LH" +LocalDate.now(),"XXX","XXX")));
+        
+         return Flux.zip(events, interval, (key, value) -> key);
+	}
+	
+
 	
 }

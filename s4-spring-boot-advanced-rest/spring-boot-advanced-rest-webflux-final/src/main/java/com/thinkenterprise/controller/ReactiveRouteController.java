@@ -20,6 +20,10 @@
 package com.thinkenterprise.controller;
 
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.stream.Stream;
+
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,12 +38,23 @@ import reactor.core.publisher.Flux;
 @Profile("controller")
 public class ReactiveRouteController {
 
+	static Flux<Route> flux = Flux.just(new Route("LH7902","MUC","IAH"), 
+			 							new Route("LH1602","MUC","IBZ"), 
+			 							new Route("LH401","FRA","NYC"));
 	
 	@RequestMapping
+	
 	public Flux<Route> routes() {
-		return Flux.just(new Route("LH7902","MUC","IAH"), 
-				         new Route("LH1602","MUC","IBZ"), 
-				         new Route("LH401","FRA","NYC"));
+		
+		
+		 Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
+         Flux<Route> events = 
+                                   Flux
+                                     .fromStream(Stream.generate(()->new Route("LH" +LocalDate.now(),"XXX","XXX")));
+        
+         return Flux.zip(events, interval, (key, value) -> key);
+	
+	
 	}
 	 
 }

@@ -1,0 +1,118 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Aero API",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://springdoc.org"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/routes/{id}": {
+            "get": {
+                "tags": [
+                    "RouteController"
+                ],
+                "summary": "Get one Route",
+                "operationId": "get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "route itentifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Route"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "The Route",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Route"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/routes": {
+            "get": {
+                "tags": [
+                    "RouteController"
+                ],
+                "operationId": "getAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Route": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "flightNumber": {
+                        "type": "string"
+                    },
+                    "departure": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "OAuth2Security": {
+                "type": "oauth2",
+                "in": "header",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "http://url.com/auth",
+                        "scopes": {
+                            "write:pets": "modify pets in your account"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

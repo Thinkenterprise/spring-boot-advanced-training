@@ -15,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class OpenAPIConfiguration {
 		
+	
 	@Bean
 	public Docket newsApi() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
