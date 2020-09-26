@@ -41,4 +41,19 @@ public void checkRouteRepositoryWithQualifier(@Qualifier("routeRepository") Rout
 } </template><template autoinsert="true" context="java" deleted="false" description="test contextLoad" enabled="true" name="test contextLoad">@Test
 @DisplayName("Checking if context is loaded with beans")
 public void contextLoad() {
-}</template></templates>
+}</template><template autoinsert="true" context="java" deleted="false" description="test checkRoutes" enabled="true" name="test checkRoutes">@ParameterizedTest &#13;
+    @MethodSource("someRoutes")&#13;
+    @DisplayName("Good Routes")&#13;
+    void CheckRoutes(Route route) {&#13;
+        &#13;
+        Assertions.assertTrue(route.getFlightNumber().equals("LH123"));&#13;
+    }&#13;
+&#13;
+    static Stream&lt;Route&gt; someRoutes() {&#13;
+        return Stream.of(&#13;
+                new Route("LH123", "MUC", "BER"),&#13;
+                new Route("LH123", "MUC", "BER")&#13;
+                &#13;
+        );&#13;
+    }</template>
+</templates>

@@ -38,7 +38,7 @@ public class FlightServiceAutoConfiguration {
 
 	@Autowired
 	FlightServiceConfigurationProperties fsProperties;
-	
+	 
 	
     @Bean
     @ConditionalOnMissingBean

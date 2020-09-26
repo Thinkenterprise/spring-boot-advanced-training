@@ -68,7 +68,7 @@ public class RouteController {
 ## Spring Doc testen 
 
 
-Die **OpenAPI 3.0 Specification** rufen Sie auf indem Sie die URL des Service ermitteln und dann über **Postma** ``v2/api-docs `` eingeben. 
+Die **OpenAPI 3.0 Specification** rufen Sie auf indem Sie die URL des Service ermitteln und dann über **Postma** ``localhost:8080/oas/v3/spec `` eingeben. 
 
 
 ```
@@ -78,7 +78,7 @@ Postman : localhost:8080/oas/v3/spec
 
  
 
-Die **Open API 3.0  HTML Documentation** rufen Sie auf indem Sie die URL des Route Service ermitteln und dann über einen **Browser** eingeben ``swagger-ui.html `` eingeben. 
+Die **Open API 3.0  HTML Documentation** rufen Sie auf, indem Sie die URL des Route Service ermitteln und dann über einen **Browser**  ``localhost:8080/oas/v3/ui `` eingeben. 
 
 
 ```

@@ -42,6 +42,25 @@ public void contextLoad() {
 
 ```
 
+## Parameter 
+
+```java
+    @ParameterizedTest 
+    @MethodSource("someRoutes")
+    @DisplayName("Good Routes")
+    void CheckRoutes(Route route) {
+        
+        Assertions.assertTrue(route.getFlightNumber().equals("LH123"));
+    }
+
+    static Stream<Route> someRoutes() {
+        return Stream.of(
+                new Route("LH123", "MUC", "BER"),
+                new Route("LH123", "MUC", "BER")
+                
+        );
+    }
+```
 
 ## Autowired 
 
@@ -100,5 +119,22 @@ Spring Annotation in der man eine SPEL verwenden kann.
 
 ```
 
+## Show Nested Tests
+```java
+    @Nested
+	class ConditionalTests {
 
+		@Test
+		@EnabledOnOs(OS.WINDOWS)
+		public void checkMacOs() {
+			Assertions.assertTrue(true);
+		}
+
+		@Test
+		@EnabledIf(expression = "false")
+		public void checkConditional() {
+			Assertions.assertTrue(false);
+		}
+	}
+```
 

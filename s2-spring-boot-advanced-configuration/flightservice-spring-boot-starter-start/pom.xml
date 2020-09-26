@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.thinkenterprise</groupId>
-    <artifactId>s2-flightservice-spring-boot-starter-start</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.thinkenterprise</groupId>
+	<artifactId>s2-flightservice-spring-boot-starter-start</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>flightservice-spring-boot-starter</name>
 
 	<dependencyManagement>
@@ -18,7 +19,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -28,11 +29,11 @@
 	</properties>
 
 
-    <dependencies>
-       
-    </dependencies>
+	<dependencies>
 
- 	<build>
+	</dependencies>
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -40,7 +41,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<repositories>
 		<repository>
 			<id>spring-repo</id>
