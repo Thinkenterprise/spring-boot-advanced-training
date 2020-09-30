@@ -31,6 +31,7 @@ import com.thinkenterprise.message.amqp.AmqpSender;
 @Component
 public class AmqSenderCallerScheduling implements BeanFactoryAware {
 
+	
 	public static Long counter = new Long(0);
 
 	private static BeanFactory context;
