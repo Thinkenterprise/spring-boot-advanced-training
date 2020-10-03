@@ -16,12 +16,13 @@ spring:
     
 # The sample supports two profile nonReactive and reactive OAuth2/JWT Security
   profiles:
-    active: nonReactive
+    active: reactive
 
+# If profile set to nonReactive please delete the classpath prefix
   security:
     oauth2:
       resourceserver:
         jwt: 
-          public-key-location: public-key.txt
+          public-key-location: classpath:public-key.txt
           
   
