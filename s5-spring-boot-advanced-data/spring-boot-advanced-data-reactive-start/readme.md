@@ -50,6 +50,8 @@ Die Fluggesellschaft plant die Umstellung der Relationalen Datenbank auf eine re
 
 ## Schema und Daten in Datenbank laden 
 
+Das automatische erstellen des Datenbank-Schemata und Laden von Daten in die Datenbank wird nicht von der Autoconfiguration unterstützt und muss explizit implementiert werden. Daher müssen Sie den Code in der Klasse ``RouteDatabase`` ausdokumentieren. 
+
 
 ```java
 @Configuration
@@ -71,5 +73,28 @@ public class RouteDatabase {
 }
 
 ```
+
+## Test schreiben 
+
+```java
+@DataR2dbcTest
+@ComponentScan(basePackageClasses = {Application.class})
+public class RouteRepositoryTests {
+
+    @Autowired
+    private ReactiveRouteRepository reactiveRouteRepository;
+    
+    @Test
+    public void findByFlightNumber() {
+        	
+    	reactiveRouteRepository.findById(101L)
+    						   .as(StepVerifier::create)
+    	                       .assertNext(route -> Assertions.assertTrue(route.getId().equals(101L)))
+    	                       .verifyComplete();
+
+    }
+}
+```
+
 
 

@@ -38,8 +38,7 @@ public class RouteController {
 	
 	@RequestMapping
 	public Flux<Route> getAll() {
-		return null;
-		
+		return null;	
 	}
 	
 	@RequestMapping("{id}")
