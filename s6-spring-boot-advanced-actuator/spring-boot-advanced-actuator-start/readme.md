@@ -93,14 +93,16 @@ java -jar <target/application>
 
 ## Prometheus starten 
  
+Der absolute Pfad <absolute-path> kann über ``pwd`` in der Shell ermittelt und in das Kommando eingefügt werden.
+
 ```
-docker run -d -p 9090:9090 -v ~/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+docker run -d -p 9090:9090 --mount type=bind,source=<absolute-path>/prometheus.yml,target=/etc/prometheus/prometheus.yml prom/prometheus
 ```
 
 
 ## Metrik abrufen 
 ```
-localhost:9090/graph
+localhost:9090
 ```
 
 ## Eigenen Endpoint implementieren  
