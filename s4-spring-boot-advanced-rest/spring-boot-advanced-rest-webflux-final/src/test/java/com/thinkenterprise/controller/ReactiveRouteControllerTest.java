@@ -12,13 +12,13 @@ import com.thinkenterprise.domain.route.Route;
 
 @ActiveProfiles("controller")
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
-public class ReactiveTrackingControllerTest {
+public class ReactiveRouteControllerTest {
 
 	@Autowired
 	private WebTestClient webTestClient;
 	
 	@Test
-	public void trackings() {
+	public void routes() {
 		
 		webTestClient.get().uri("/routes").exchange().expectBodyList(Route.class).hasSize(3);
 		

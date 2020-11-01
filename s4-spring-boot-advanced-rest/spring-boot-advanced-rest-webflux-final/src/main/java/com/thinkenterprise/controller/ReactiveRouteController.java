@@ -20,7 +20,13 @@
 package com.thinkenterprise.controller;
 
 
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,14 +39,29 @@ import reactor.core.publisher.Flux;
 @RequestMapping("routes")
 @Profile("controller")
 public class ReactiveRouteController {
+	
+	
+	private List<Route> airline = Arrays.asList(new Route("LH7902","MUC","IAH"), 
+												new Route("LH1602","MUC","IBZ"), 
+												new Route("LH401","FRA","NYC"));
 
-		
+	
+	private Random random = new Random();
+	
 	@RequestMapping
 	public Flux<Route> routes() {
 		
 		return Flux.just(new Route("LH7902","MUC","IAH"), 
 					new Route("LH1602","MUC","IBZ"), 
 					new Route("LH401","FRA","NYC"));
+	
+	}
+	
+	@RequestMapping(path="stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<Route> routesStreams() {
+		
+		return Flux.<Route> generate(sink -> sink.next(airline.get(random.nextInt(airline.size())))) 
+				                    .delayElements(Duration.ofMillis(250));
 	
 	}
 	 
