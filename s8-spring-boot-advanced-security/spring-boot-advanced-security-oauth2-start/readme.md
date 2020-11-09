@@ -26,7 +26,7 @@ security:
     oauth2:
       resourceserver:
         jwt: 
-          public-key-location: classpath:public-key.txt
+          public-key-location: public-key.txt
 
 
 ```
