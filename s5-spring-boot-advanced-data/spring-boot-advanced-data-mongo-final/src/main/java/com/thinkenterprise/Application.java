@@ -39,11 +39,7 @@ public class Application implements ApplicationRunner {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
-	@Autowired
-	MongoTransactionManager mongoTransactionManager;
-	
-	
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 

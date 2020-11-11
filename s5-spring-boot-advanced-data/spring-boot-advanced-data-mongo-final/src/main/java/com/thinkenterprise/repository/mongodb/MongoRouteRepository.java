@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkenterprise.domain.route.Route;
 
 @Repository
-@Transactional
+//@Transactional
 public class MongoRouteRepository implements RouteRepository {
 	
 	@Autowired

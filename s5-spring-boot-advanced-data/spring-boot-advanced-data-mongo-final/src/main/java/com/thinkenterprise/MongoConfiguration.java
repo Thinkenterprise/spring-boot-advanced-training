@@ -8,10 +8,12 @@ import org.springframework.data.mongodb.MongoTransactionManager;
 @Configuration
 public class MongoConfiguration {
 	
+	/*
 	@Bean
 	public MongoTransactionManager transactionManager(MongoDatabaseFactory mongoDbFactory) {
 		return new MongoTransactionManager(mongoDbFactory);
 		
 	}
+	*/
 
 }
