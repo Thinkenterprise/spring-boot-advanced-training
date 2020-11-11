@@ -1,0 +1,28 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.thinkenterprise</groupId>
+    <artifactId>s0-spring-boot-advanced-meta</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+		<module>s1-spring-boot-advanced-test/spring-boot-advanced-test-final</module>
+		<module>s3-spring-boot-advanced-reactive/spring-boot-advanced-reactive-final</module>
+		<module>s4-spring-boot-advanced-rest/spring-boot-advanced-rest-hateoas-final</module>
+		<module>s4-spring-boot-advanced-rest/spring-boot-advanced-rest-openapi-final</module>
+		<module>s4-spring-boot-advanced-rest/spring-boot-advanced-rest-openapi-springdoc-final</module>
+		<module>s4-spring-boot-advanced-rest/spring-boot-advanced-rest-webflux-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-jpa-2db-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-jpa-2pc-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-jpa-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-mongo-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-reactive-final</module>
+		<module>s5-spring-boot-advanced-data/spring-boot-advanced-data-redis-final</module>
+		<module>s6-spring-boot-advanced-actuator/spring-boot-advanced-actuator-final</module>
+		<module>s7-spring-boot-advanced-messaging/spring-boot-advanced-messaging-final</module>
+		<module>s8-spring-boot-advanced-security/spring-boot-advanced-security-oauth2-final</module>
+		<module>s9-spring-boot-advanced-kotlin/spring-boot-advanced-kotlin-final</module>
+	</modules>
+</project>

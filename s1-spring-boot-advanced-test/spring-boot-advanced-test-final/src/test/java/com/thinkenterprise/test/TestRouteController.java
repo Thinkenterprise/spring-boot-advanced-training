@@ -78,7 +78,7 @@ public class TestRouteController {
 
 	@Test
 	@DisplayName("Checking property route count == 4")
-	public void checkProperties(@Value("${thinkenterprise.count}") float count) {
+	public void checkProperties(@Value("${route.count}") float count) {
 		Assertions.assertTrue(count == 4);
 	}
 
