@@ -1,6 +1,7 @@
 package com.thinkenterprise;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,7 +19,7 @@ public class JpaRouteRepositoryTest {
 	
 	@Test
 	public void testGetAll() {
-		Assert.assertTrue(jdbcRouteRepository.findAll().size()==3);
+		assertTrue(jdbcRouteRepository.findAll().size()==3);
 	}
 	 
 }

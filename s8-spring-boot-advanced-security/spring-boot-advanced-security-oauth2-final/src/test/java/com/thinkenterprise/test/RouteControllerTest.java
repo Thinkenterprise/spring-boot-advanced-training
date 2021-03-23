@@ -1,9 +1,11 @@
 package com.thinkenterprise.test;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.io.IOException;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,9 +41,9 @@ public class RouteControllerTest {
 
 		Iterable<Route> iterable = routeResponse.getBody();
 
-		Assert.assertEquals(HttpStatus.OK, routeResponse.getStatusCode());
-		Assert.assertNotNull(routeResponse.getBody());
-		Assert.assertNotNull(iterable.iterator().hasNext());
+		assertEquals(HttpStatus.OK, routeResponse.getStatusCode());
+		assertNotNull(routeResponse.getBody());
+		assertNotNull(iterable.iterator().hasNext());
     	       
     }
     

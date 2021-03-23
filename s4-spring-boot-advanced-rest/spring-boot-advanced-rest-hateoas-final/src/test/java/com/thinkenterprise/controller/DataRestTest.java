@@ -20,21 +20,21 @@
 
 package com.thinkenterprise.controller;
 
-import com.thinkenterprise.domain.route.Route;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+
+import com.thinkenterprise.domain.route.Route;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@RunWith(SpringRunner.class)
+// @RunWith(SpringRunner.class)
 public class DataRestTest {
 
     @Autowired
@@ -46,6 +46,6 @@ public class DataRestTest {
         keys.put("id", "101");
 
         Route body = this.restTemplate.getForObject("/routes/{id}", Route.class, keys);
-        Assert.assertNotNull(body);
+        assertNotNull(body);
     }
 }

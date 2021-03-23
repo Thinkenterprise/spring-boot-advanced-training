@@ -1,22 +1,15 @@
 package com.thinkenterprise.springboot.jpa2pc;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
-import java.sql.SQLException;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.h2.jdbc.JdbcSQLException;
-import org.h2.tools.Server;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.UnexpectedRollbackException;
 
