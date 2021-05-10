@@ -22,15 +22,14 @@ Die Fluggesellschaft stellt einen Route-Service bereit, über den die Routen der
 ## Public Key bereitstellen 
 
 ```
-security:
+  security:
     oauth2:
       resourceserver:
         jwt: 
-          public-key-location: public-key.txt
-
-
+          public-key-location: classpath:META-INF/resources/public-key.txt
 ```
 
+Der Bereich `security` befindet sich nach der Anpassung "unterhalb" der mit dem Schlüsselwort `spring` eingeleiteten Hierarchie!
 
 ## OAuth2/JWT Security Configuration für Authorization 
 

@@ -14,6 +14,6 @@ spring:
     url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE 
     platform: h2
     
-    
-active:
+  active:
     profiles: nonReactive
+

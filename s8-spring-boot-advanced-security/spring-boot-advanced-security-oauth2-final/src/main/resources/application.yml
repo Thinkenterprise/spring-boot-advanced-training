@@ -23,6 +23,6 @@ spring:
     oauth2:
       resourceserver:
         jwt: 
-          public-key-location: classpath:public-key.txt
+          public-key-location: classpath:META-INF/resources/public-key.txt
           
   
