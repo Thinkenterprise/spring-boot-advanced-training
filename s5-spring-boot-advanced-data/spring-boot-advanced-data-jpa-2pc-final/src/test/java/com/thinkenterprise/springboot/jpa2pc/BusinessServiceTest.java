@@ -1,7 +1,6 @@
 package com.thinkenterprise.springboot.jpa2pc;
 
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,8 +24,6 @@ import com.thinkenterprise.springboot.jpa2pc.service.BusinessService.Tupel;
 @SpringBootTest
 public class BusinessServiceTest {
 
-
-
 	@Autowired
 	private FlightRepository flightRepository;
 
@@ -35,7 +32,6 @@ public class BusinessServiceTest {
 
 	@Autowired
 	private BusinessService service;
-
 
 	@Test
 	public void testCreateFlight() {
@@ -48,7 +44,7 @@ public class BusinessServiceTest {
 	public void testCreateTracking() {
 		Tracking tracking = new Tracking( LocalDateTime.now(), 343L, FlightStatus.SCHEDULED );
 		tracking = service.saveTracking( tracking );
-		Assertions.assertNotNull(trackingRepository.findById( tracking.getId()));	
+		Assertions.assertNotNull( trackingRepository.findById( tracking.getId() ) );
 	}
 
 	@Test
@@ -56,8 +52,10 @@ public class BusinessServiceTest {
 		Tracking tracking = new Tracking( LocalDateTime.now(), 343L, FlightStatus.SCHEDULED );
 		Tracking tracking2 = new Tracking( tracking );
 		tracking = service.saveTracking( tracking );
-		Assertions.assertNotNull(trackingRepository.findById( tracking.getId()));
-		Assertions.assertThrows(UnexpectedRollbackException.class, () -> { service.saveTracking(tracking2); } );
+		Assertions.assertNotNull( trackingRepository.findById( tracking.getId() ) );
+		Assertions.assertThrows( UnexpectedRollbackException.class, () -> {
+			service.saveTracking( tracking2 );
+		} );
 	}
 
 	@Test
@@ -65,8 +63,8 @@ public class BusinessServiceTest {
 		Flight flight = new Flight( 100L, LocalDate.now() );
 		Tracking tracking = new Tracking( LocalDateTime.now(), 343L, FlightStatus.SCHEDULED );
 		Tupel tupel = service.saveTupel( flight, tracking );
-		Assertions.assertNotNull(flightRepository.findById( tupel.flight.getId()));
-		Assertions.assertNotNull(trackingRepository.findById( tupel.tracking.getId()));
+		Assertions.assertNotNull( flightRepository.findById( tupel.flight.getId() ) );
+		Assertions.assertNotNull( trackingRepository.findById( tupel.tracking.getId() ) );
 	}
 
 	@Test
@@ -75,8 +73,8 @@ public class BusinessServiceTest {
 		Tracking tracking = new Tracking( LocalDateTime.now(), 752L, FlightStatus.SCHEDULED );
 		Tracking tracking2 = new Tracking( tracking );
 		tracking = service.saveTracking( tracking );
-		Assertions.assertThrows(UnexpectedRollbackException.class, () -> { service.saveTupel( flight, tracking2 ); } );
+		Assertions.assertThrows( UnexpectedRollbackException.class, () -> {
+			service.saveTupel( flight, tracking2 );
+		} );
 	}
-
-
 }

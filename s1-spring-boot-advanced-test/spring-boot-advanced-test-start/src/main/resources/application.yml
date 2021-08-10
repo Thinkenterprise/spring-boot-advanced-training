@@ -10,6 +10,7 @@ spring:
     platform: h2
 
   jpa:
+    defer-datasource-initialization: true # Create JPA-Schema before(!) loading SQL scripts (override new behaviour of Spring-Boot 2.5)
     generate-ddl: true
     show-sql: true
 
