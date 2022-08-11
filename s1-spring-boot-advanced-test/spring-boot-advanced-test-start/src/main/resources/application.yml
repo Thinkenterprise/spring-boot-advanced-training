@@ -5,9 +5,7 @@ logging:
     
 spring:
   datasource:
-    initialization-mode: always
     url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE    
-    platform: h2
 
   jpa:
     defer-datasource-initialization: true # Create JPA-Schema before(!) loading SQL scripts (override new behaviour of Spring-Boot 2.5)
@@ -20,4 +18,9 @@ spring:
   h2:
     console:
       enabled: true
-      path: /h2-console   
+      path: /h2-console
+  
+  sql:
+    init:
+      platform: h2
+      mode: always   

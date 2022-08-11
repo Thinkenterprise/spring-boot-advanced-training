@@ -14,4 +14,7 @@ spring:
       path: /h2-console
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE 
-    platform: h2
+    
+  sql:
+    init:
+      platform: h2

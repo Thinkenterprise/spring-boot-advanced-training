@@ -34,8 +34,7 @@ public class ReactiveClientApplication {
 	    	client
 	    	.get()
 	    	.uri("/routes")
-	    	.exchange()
-	    	.flatMapMany(response -> response.bodyToFlux(Route.class))
+	    	.exchangeToFlux(response -> response.bodyToFlux(Route.class))
 	    	.log()
 	    	.blockLast();
 	    	
