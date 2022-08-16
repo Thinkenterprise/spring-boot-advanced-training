@@ -3,7 +3,7 @@ package com.thinkenterprise.test;
 
 import java.io.IOException;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,9 +39,12 @@ public class RouteControllerTest {
 
 		Iterable<Route> iterable = routeResponse.getBody();
 
-		Assert.assertEquals(HttpStatus.OK, routeResponse.getStatusCode());
-		Assert.assertNotNull(routeResponse.getBody());
-		Assert.assertNotNull(iterable.iterator().hasNext());
+		
+		
+		
+		Assertions.assertEquals(HttpStatus.OK, routeResponse.getStatusCode());
+		Assertions.assertNotNull(routeResponse.getBody());
+		Assertions.assertNotNull(iterable.iterator().hasNext());
     	       
     }
     

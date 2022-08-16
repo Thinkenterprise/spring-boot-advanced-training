@@ -29,6 +29,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkenterprise.domain.route.Route;
 
@@ -49,6 +50,7 @@ public class JpaRouteRepository implements RouteRepository {
 		return entityManager.find(Route.class, id);
 	}
 	
+	@Transactional
 	public Route save(Route route) {
 		 entityManager.persist(route);
 		 return route;
