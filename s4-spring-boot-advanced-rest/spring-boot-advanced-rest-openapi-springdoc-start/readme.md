@@ -11,7 +11,7 @@ Die Fluggesellschaft möchte die Web-APIs des Route-Service über die OpenAPI 3
      <dependency>
 		<groupId>org.springdoc</groupId>
 		<artifactId>springdoc-openapi-ui</artifactId>
-		<version>1.4.6</version>
+		<version>1.6.9</version>
 	</dependency>
 ```
 

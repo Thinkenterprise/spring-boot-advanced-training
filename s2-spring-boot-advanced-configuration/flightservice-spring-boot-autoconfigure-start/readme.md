@@ -42,7 +42,7 @@ public class FlightServiceConfigurationProperties {
 ## Autoconfiguration erstellen 
 
 ```java
-@Configuration
+@AutoConfiguration
 @ConditionalOnClass(FlightService.class)
 @EnableConfigurationProperties(FlightServiceConfigurationProperties.class)
 public class FlightServiceAutoConfiguration {
@@ -66,10 +66,9 @@ public class FlightServiceAutoConfiguration {
     
 ## Factory File erstellen 
 
-META-INF/spring.factories
+META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
 
 ```java
-	org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 	com.thinkenterprise.flightservice.autoconfiguration.FlightServiceAutoConfiguration
 ```
 
