@@ -13,18 +13,45 @@ Die Fluggesellschaft möchte die Implementierung des Route-Service auf einen dir
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-data-redis</artifactId>
 	</dependency>
-		
-		
 ```
 
-
-## Redis In Memory Driver 
+## Redis Embedded Server 
 ```java
 	<dependency>
-		<groupId>com.github.kstyrc</groupId>
+		<groupId>it.ozimov</groupId>
 		<artifactId>embedded-redis</artifactId>
-		<version>0.6</version>
+		<version>0.7.3</version>
 	</dependency>
+```
+
+## Redis Properties in der application.properties setzen
+```java
+	spring.redis.server.port=6379
+	spring.redis.server.host=localhost
+```
+
+## Redis Properties
+```java
+	@Configuration
+	public class RedisProperties {
+
+		private int port;
+		private String host;
+
+		public RedisProperties(@Value("${spring.redis.server.port}") int port,
+				@Value("${spring.redis.server.host}") String host) {
+			this.port = port;
+			this.host = host;
+		}
+	
+		public String getHost() {
+			return host;
+		}
+	
+		public int getPort() {
+			return port;
+		}
+	}
 ```
 
 ## Redis Template und Serializer definieren 
@@ -32,7 +59,7 @@ Die Fluggesellschaft möchte die Implementierung des Route-Service auf einen dir
 
 ```java
 	@Configuration
-	public class RedisConfiguration {
+	public class RedisClientConfiguration {
 	
 	@Bean
 	public RedisTemplate<String, Route> redisTemplate(RedisConnectionFactory redisConnectionFactory){
@@ -42,9 +69,12 @@ Die Fluggesellschaft möchte die Implementierung des Route-Service auf einen dir
 		redisTemplate.setKeySerializer(stringRedisSerializer());
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer());
 		return redisTemplate;
-		
 	}
 	
+	@Bean
+	public LettuceConnectionFactory redisConnectionFactory(RedisProperties properties) {
+		return new LettuceConnectionFactory(properties.getHost(), properties.getPort());
+	}
 	
 	@Bean
     public StringRedisSerializer stringRedisSerializer() {
@@ -88,9 +118,6 @@ public class RedisRouteRepository implements RouteRepository {
         return routeList;
 	}
 	
-	
-	
-	
 	public Route find(Long id) {
 		return redisTemplate.opsForValue().get(String.valueOf(id));
 	}
@@ -99,8 +126,6 @@ public class RedisRouteRepository implements RouteRepository {
 		redisTemplate.opsForValue().set(String.valueOf(route.getId()), route);
 		return route;
 	}
-
-	
 }
 ```
 
@@ -109,46 +134,49 @@ public class RedisRouteRepository implements RouteRepository {
 
 ```java
 @SpringBootApplication
-public class Application implements ApplicationRunner, ApplicationListener<ApplicationEvent> {
+public class Application implements ApplicationRunner {
 
 	@Autowired
 	RedisTemplate<String, Route> redisTemplate;
-	
-	static RedisServer redisServer;
-	
-	
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-       
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
 	public void run(ApplicationArguments args) throws Exception {
-		
-		redisServer = new RedisServer(6379); 
-		redisServer.start();
-			
-		redisTemplate.opsForValue().set(String.valueOf(1L), new Route(1L,"LH7902","MUC","IAH"));
-		redisTemplate.opsForValue().set(String.valueOf(2L), new Route(2L,"LH1602","MUC","IBZ"));
-		redisTemplate.opsForValue().set(String.valueOf(3L), new Route(3L,"LH401","FRA","NYC"));
-		
+		redisTemplate.opsForValue().set(String.valueOf(1L), new Route(1L, "LH7902", "MUC", "IAH"));
+		redisTemplate.opsForValue().set(String.valueOf(2L), new Route(2L, "LH1602", "MUC", "IBZ"));
+		redisTemplate.opsForValue().set(String.valueOf(3L), new Route(3L, "LH401", "FRA", "NYC"));
 	}
-
-	@Override
-	public void onApplicationEvent(ApplicationEvent event) {
-		 
-		if(event instanceof  ContextStoppedEvent)
-			redisServer.stop();
-		
-	}
-	
 }
+```
 
+## RedisServerConfiguration erstellen
+```java
+	@Configuration
+	public class RedisServerConfiguration {
+	
+		private RedisServer server;
+	
+		public RedisServerConfiguration( RedisProperties properties) {
+			server = new RedisServer(properties.getPort());
+		}
+	
+		@PostConstruct
+		public void postConstruct() {
+			server.start();
+		}
+	
+		@PreDestroy
+		public void preDestroy() {
+			server.stop();
+		}
+	}
 ```
 
 ## Test erstellen 
-
 ```java
-	@ComponentScan(basePackageClasses = {Application.class})
+	@ComponentScan(basePackageClasses = { Application.class })
 	@DataRedisTest	
 	public class RedisRouteRepositoryTest {
 
@@ -157,12 +185,8 @@ public class Application implements ApplicationRunner, ApplicationListener<Appli
 	
 		@Test	
 		public void testGetAll() {
-			Assert.assertTrue(redisRouteRepository.findAll().size()==3);
+			Assertions.assertEquals(3, redisRouteRepository.findAll().size());
 		}
-	 
 }
 
 ```
-
-
-

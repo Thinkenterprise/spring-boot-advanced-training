@@ -1,19 +1,24 @@
 package com.thinkenterprise;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.thinkenterprise.repository.redis.RedisRouteRepository;
 
-//@ComponentScan(basePackageClasses = {Application.class})
-//@DataRedisTest
+@ComponentScan(basePackageClasses = { Application.class })
+@DataRedisTest
 public class RedisRouteRepositoryTest {
 
-	//@Autowired
+	@Autowired
 	private RedisRouteRepository redisRouteRepository;
-	
-	//@Test
+
+	@Test
 	public void testGetAll() {
-		assertTrue(redisRouteRepository.findAll().size()==3);
+		assertEquals(3, redisRouteRepository.findAll().size());
 	}
-	 
+
 }

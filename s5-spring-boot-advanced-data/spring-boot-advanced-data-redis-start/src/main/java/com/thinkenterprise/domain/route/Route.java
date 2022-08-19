@@ -38,6 +38,10 @@ public class Route  {
 		this.id = id;
 	}
 
+	public Route() {
+		//For deserializer
+	}
+
 	public Route(Long id, String flightNumber, String departure, String destination) {
         super();
         this.id=id;

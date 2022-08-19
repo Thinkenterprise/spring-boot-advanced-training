@@ -23,7 +23,6 @@ package com.thinkenterprise.repository.redis;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,9 +54,6 @@ public class RedisRouteRepository implements RouteRepository {
         return routeList;
 	}
 	
-	
-	
-	
 	public Route find(Long id) {
 		return redisTemplate.opsForValue().get(String.valueOf(id));
 	}
@@ -66,6 +62,4 @@ public class RedisRouteRepository implements RouteRepository {
 		redisTemplate.opsForValue().set(String.valueOf(route.getId()), route);
 		return route;
 	}
-
-	
 }
