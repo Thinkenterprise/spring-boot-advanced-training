@@ -4,10 +4,11 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import redis.embedded.RedisServer;
 
-@Configuration
+@Component
 public class RedisServerConfiguration {
 
 	private final RedisServer server;

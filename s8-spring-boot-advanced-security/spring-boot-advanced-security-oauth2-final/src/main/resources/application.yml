@@ -27,4 +27,4 @@ spring:
         jwt: 
           public-key-location: classpath:META-INF/resources/public-key.txt
           
-  
+    
