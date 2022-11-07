@@ -1,10 +1,11 @@
 ## Aufgabe 
 
-Es ist eine Erweiterung des Monitoring geplant. Es soll eine Metrik bereitgestellt werden, über die die Ausfallhäufigkeit des Route-Service gemessen werden kann. Die Metrik soll in das Monitoring System Prometheus eingespeist werden.
+Für den bestehenden RouteService sollen Metriken eingeführt werden. Es sollen für die Business Methode businessFunction() die Anzahl der Aufrufe, die summierte Ausführungszeit und die maximale Ausführungszeit als Metrik bereitgestellt werden. 	
+ 
+1. Erstellen Sie für die businessFunction() einen Meter vom Typ Timer. 
+2. Übergeben Sie die Metrik an den Prometheus Metrik-Server.
+3. Erstellen Sie über Grafana ein Dashboard zur Anzeige der Metriken.
 
-1. Erstellen Sie eine Metrik für die Ausfallhäufigkeit.
-2. Rufen Sie die Metrik über den bestehenden Metrik Endpoint ab.
-3. Stellen Sie die Metrik über Prometheus bereit.
 
 Erstellen Sie nun noch einen eigenen Endpoint der den Route-Status zurückgibt.
 
@@ -19,58 +20,65 @@ Dieser soll zusätzlich ein reaktiver Endpoint für die gleiche Aufgabe bereitge
 2. Endpoint prüfen
 
 
-## Metrik Implementieren 
+# Metrik Implementieren 
 
-```java
+## Timer Metrik implementieren 
+
+Zunächst implmentieren Sie die Metrik über die Annotation  ``@Timer`` und fügen danach den ``TimerAspekt`` der Konfiguration hinzu. 
+
+
+```
 @Service
 public class RouteService {
 
-    private boolean serviceStatus;
-    private boolean running = true;
-  
-    
-    private MeterRegistry meterRegistry;
-	private Counter routeRequestCount;
-	
-	@Autowired
-	public RouteService(MeterRegistry meterRegistry) {
-		this.meterRegistry = meterRegistry;
-		this.initializeCounters();
-	}
-	
-	void initializeCounters () {	
-		routeRequestCount = Counter
-				  .builder("routeServiceStateChangeCounter")
-				  .description("counts number of state changes")
-				  .tags("service", "states")
-				  .register(this.meterRegistry);
-	}
-	
+	private Random random = new Random(0);
 
-	public double incrementCounter() {
-		routeRequestCount.increment();
-		return routeRequestCount.count();
+	@Timed(value = "businessFunctionTimer", extraTags = { "business",
+			"service" }, description = "Execution time of business function")
+	public Long businessFunction() {
+
+		Long randomValue = random.nextLong(1000L);
+
+		try {
+			Thread.sleep(random.nextLong(1000L));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		return randomValue;
 	}
-        
-   
-   
+
 }
 
+@Configuration
+public class MetricConfiguration {
+
+	@Bean
+	TimedAspect timedAspect(MeterRegistry reg) {
+		return new TimedAspect(reg);
+	}
+
+}
 ```
 
 ## Anwendung starten 
 Aus der IDE oder über die Konsole 
- 
+
+
 ```
 mvn clean package
 java -jar <target/application>
 ```
 
-## Metrik prüfen 
+## Counter Metrik prüfen 
 
 ```
 http://localhost:8080/actuator/metrics
+http://localhost:8080/actuator/metrics/businessFunctionTimer
 ```
+
+
+
 
 ## Prometheus einführen 
 
@@ -84,28 +92,73 @@ http://localhost:8080/actuator/metrics
 
 ## Anwendung starten 
 Aus der IDE oder über die Konsole 
- 
+
 ```
 mvn clean package
 java -jar <target/application>
 ```
 
 
-## Prometheus starten 
- 
-Der absolute Pfad <absolute-path> kann über ``pwd`` in der Shell ermittelt und in das Kommando eingefügt werden.
+## Prometheus Metriken abfragen 
 
 ```
-docker run -d -p 9090:9090 --mount type=bind,source=<absolute-path>/prometheus.yml,target=/etc/prometheus/prometheus.yml prom/prometheus
+http://localhost:8080/actuator/prometheus
+```
+
+## Prometheus & Grafana starten 
+
+Nun soll die von Spring Boot bereitgestellten Metriken über Prometheus, Grafan und Altermanager erfasst 
+und angezeigt werden. Starten Sie dazu die benötigte Infrastruktur. 
+
+Wechseln Sie in das Verzeichnis ``infrastructure`` und starten Sie die Infrastruktur über 
+
+
+```
+docker compose up -d 
 ```
 
 
-## Metrik abrufen 
+## Metrik über Prometheus abrufen 
+
+Über die URL können Sie Prometheus aufrufen und dort die Metriken anzeigen lassen. 
+
+
 ```
-localhost:9090
+http://localhost:9090/
 ```
 
-## Eigenen Endpoint implementieren  
+## Metrik über Grafana abrufen 
+
+Prometheus ist für das Erfassen und Speicher der Metriken verantwortlich. Prometheus 
+besitzt zwar eine Anzeige, die wird aber in der Regel nicht für das Monitoring verwendet. 
+Grafana ist spezialisiert für die Anzeige von Metriken aus verschiedenen Quellen und 
+bietet umfassende Möglichkeiten Monitoring Dashboards zur Verfügung zu setellen. 
+
+Die Voristallierte Version von Grafana besitzt bereits eine konfigurierte Datenquelle 
+zu Prometheus. Legen Sie über Dashboard einen Graphen an, der eine der Metriken anzeigt. 
+
+
+```
+http://localhost:3000/
+```
+
+Die Zugangsdaten sind **admin** und **foobar**
+
+
+
+## Shutdown 
+
+Fahren Sie bitte mit dem folgenden Befehl die Infrastruktur wieder herunter. 
+
+```
+docker compose down 
+```
+
+
+
+
+
+# Eigenen Endpoint implementieren  
 
 ```java
 @Component

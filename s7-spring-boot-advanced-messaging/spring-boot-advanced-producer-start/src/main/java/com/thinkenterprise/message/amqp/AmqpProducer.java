@@ -19,22 +19,14 @@
 
 package com.thinkenterprise.message.amqp;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.thinkenterprise.domain.tracking.Tracking;
 
 @Component
-public class AmqpSender {
+public class AmqpProducer {
 	
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-    
-    
-
-    public void sendMessage(Tracking tracking) {
-        rabbitTemplate.convertAndSend(AmqpConfiguration.SIMPLE_EXCHANGE_NAME,AmqpConfiguration.SIMPLE_EXCHANGE_KEY , tracking);
-    }
+	public void sendMessage(Tracking tracking) {
+		
+	}
 }

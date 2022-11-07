@@ -24,19 +24,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class RouteService {
 
-    private boolean serviceStatus;
-    private boolean running = true;
+	
+	public Long businessFunction() {
 
-	public boolean getServiceStatus() {
-        return serviceStatus;
-    }
-
-    public void setServiceStatus(boolean status) {
-    	if(running)
-    		this.serviceStatus = status;
-    }
-    
-    public double incrementCounter() {
-		return 0L;
+	return 0L;
 	}
+	
 }

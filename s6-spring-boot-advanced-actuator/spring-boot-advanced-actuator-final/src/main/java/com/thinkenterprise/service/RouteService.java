@@ -18,47 +18,74 @@
  */
 package com.thinkenterprise.service;
 
+import java.util.Random;
+import java.util.Stack;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
-
 
 @Service
 public class RouteService {
 
-    private boolean serviceStatus;
-   
-    
-    private MeterRegistry meterRegistry;
-	private Counter routeRequestCount;
-	
+	private boolean serviceStatus;
+
+	private Random random = new Random(0);
+
+	private Stack<Long> values = new Stack<>();
+
+	private MeterRegistry meterRegistry;
+	private Counter businessFunctionCounter;
+	private Gauge businessValueGauge;
+
 	@Autowired
 	public RouteService(MeterRegistry meterRegistry) {
 		this.meterRegistry = meterRegistry;
-		this.initializeCounters();
-	}
-	
-	void initializeCounters () {	
-		routeRequestCount = Counter
-				  .builder("routeServiceStateChangeCounter")
-				  .description("counts number of state changes")
-				  .tags("service", "states")
-				  .register(this.meterRegistry);
-	}
-	
-	public double incrementCounter() {
-		routeRequestCount.increment();
-		return routeRequestCount.count();
-	}
-        
-   
-	public boolean getServiceStatus() {
-        return serviceStatus;
-    }
 
-    public void setServiceStatus(boolean status) {
-    		this.serviceStatus = status;
-    }
+		businessFunctionCounter = Counter.builder("businessFunctionCounter")
+				.description("number of business function calls").tags("business", "service")
+				.register(this.meterRegistry);
+		
+		
+		meterRegistry.gauge("businessValueGauge", values,v -> values.size());
+		
+
+		/*
+		businessValueGauge = Gauge.builder("businessValueGauge", values, v -> values.size())
+				.description("businessFunctionGauge").tags("business", "service").register(this.meterRegistry);
+				*/
+	}
+
+	@Timed(value = "businessFunctionTimer", extraTags = { "business",
+			"service" }, description = "Execution time of business function")
+	public Long businessFunction() {
+
+		Long randomValue = random.nextLong(1000L);
+
+		try {
+			Thread.sleep(random.nextLong(1000L));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		if (randomValue > 500L)
+			values.push(randomValue);
+		else if (!values.empty())
+			values.pop();
+
+		businessFunctionCounter.increment();
+		return randomValue;
+	}
+
+	public boolean getServiceStatus() {
+		return serviceStatus;
+	}
+
+	public void setServiceStatus(boolean status) {
+		this.serviceStatus = status;
+	}
 }

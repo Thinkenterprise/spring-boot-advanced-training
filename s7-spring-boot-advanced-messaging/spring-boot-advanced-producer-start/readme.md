@@ -1,17 +1,24 @@
-## Precondition
-Der Rabbit MQ Message Broker wird über den folgenden Befehl gestartet. 
 
-
-```
-	docker compose -d
-```
 
 ## Aufgabe 
 
-Die Fluggesellschaft zeichnet das Tracking der Flüge auf. Die Tracking-Informationen werden von dem Tracking-Anbieter FlightAware als AMQP-Nachricht im JSON-Format an eine TopicExcange mit dem Namen FlightAwareTracking gesendet. Das Tracking besteht aus der Routenidentifikation, der Flugnummer, der Uhrzeit und einem Status. Erstellen Sie die Anwendung, die Zyklisch Tracking Infromationen an einen TopicExchange sendet. 
+Die Fluggesellschaft zeichnet das Tracking der Flüge auf. 
+Die Tracking-Informationen werden von dem Tracking-Anbieter FlightAware als AMQP-Nachricht im JSON-Format an eine TopicExcange mit dem Namen FlightAwareTracking gesendet. 
+Das Tracking besteht aus der Routenidentifikation, der Flugnummer, der Uhrzeit und einem Status. Erstellen Sie die Anwendung, die Zyklisch Tracking Infromationen an einen TopicExchange sendet. 
 
+1. Setzen Sie den RabbitMQ Server auf. 
 1. Erstellen Sie eine TopicExchange Route
 2. Senden Sie die AMQP-Nachricht als JSON-Dokument an die Queue
+
+
+## RabbitMQ Server 
+Bitte wechseln Sie in das Verzeichnis ``infrastructure``. Der Rabbit MQ Message Broker wird über den folgenden Befehl gestartet. 
+
+
+```
+	docker compose up -d
+```
+
 
 
 ## AMQP Dependency prüfen  
@@ -23,7 +30,7 @@ Die Fluggesellschaft zeichnet das Tracking der Flüge auf. Die Tracking-Informat
 	</dependency>
 ```
 
-## AMQP Route Configuration restellen   
+## AMQP Route Configuration erstellen    
 
 ```java
 @Configuration
@@ -71,7 +78,7 @@ public class AmqpConfiguration {
 
 ```java
 @Component
-public class AmqpSender {
+public class AmqpProducer {
 	
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -86,26 +93,39 @@ public class AmqpSender {
 ## AMQP Producer einbinden  
 
 ```java
-
 @Component
-public class AmqSenderCallerScheduling implements BeanFactoryAware {
+public class AmqProducerCallerScheduling {
 
-	public static Long counter = new Long(0);
+	
+	public static Long counter = Long.valueOf(0);
 
-	private static BeanFactory context;
+	@Autowired
+	private AmqpProducer amqpProducer;
 
 	@Scheduled(initialDelay = 5000, fixedDelay = 5000)
 	public void sendTracking() {
-	...
-		AmqpSender sender = context.getBean(AmqpSender.class);
-		sender.sendMessage(tracking);
+		Tracking tracking = new Tracking();
+		tracking.setRouteId(counter++);
+		tracking.setFlightNumber("LH7902");
+		tracking.setStatus(FlightStatus.DELAYED);
+	
+		amqpProducer.sendMessage(tracking);
 	}
 
-}
-
-	
+}	
 ```
 
 ## AMQP Producer starten   
 
 Starten Sie die Spring Boot Anwendung über die IDE.
+
+
+## Shutdown 
+
+Wenn Sie mit der Übung fertig sind, dann stoppen Sie bitte den RabbitMQ Server. 
+
+```
+	docker compose down 
+```
+
+

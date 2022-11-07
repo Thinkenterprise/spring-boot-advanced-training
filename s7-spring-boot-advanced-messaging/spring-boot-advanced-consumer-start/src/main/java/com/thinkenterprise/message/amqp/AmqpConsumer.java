@@ -21,20 +21,17 @@ package com.thinkenterprise.message.amqp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import com.thinkenterprise.domain.tracking.Tracking;
 
 @Component
-public class AmqpReceiver  {
+public class AmqpConsumer  {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AmqpReceiver.class);
+	private static final Logger logger = LoggerFactory.getLogger(AmqpConsumer.class);
 	
-	   
-    @RabbitListener(queues=AmqpConfiguration.SIMPLE_QUEUE_NAME)
 	public void onMessage(Tracking tracking) {
-	   	logger.info(tracking.toString());
+	   
 	}
    
   

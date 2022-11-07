@@ -1,18 +1,22 @@
-## Precondition
-Der Rabbit MQ Message Broker wird über den folgenden Befehl gestartet. 
 
-
-```
-	docker compose -d
-```
 
 ## Aufgabe 
 
 Die Fluggesellschaft zeichnet das Tracking der Flüge auf. Die Tracking-Informationen werden von dem Tracking-Anbieter FlightAware als AMQP-Nachricht im JSON-Format an eine TopicExcange mit dem Namen FlightAwareTracking gesendet. Das Tracking besteht aus der Routenidentifikation, der Flugnummer, der Uhrzeit und einem Status. Erstellen Sie die Anwendung, welche die Nachrichten von der Queue ``SimpleFlightAwareQueueSimpleFlightAwareQueue`` empfängt. 
 
 
+1. Rabbit MQ Server aufsetzen 
 1. Erstellen Sie eine TopicExchange 
-2. Empfangen Sie die JSON AMPQ-Message und geben Sie die auf der Konsole aus 
+3. Empfangen Sie die JSON AMPQ-Message und geben Sie die auf der Konsole aus 
+
+
+## RabbitMQ Server 
+Bitte wechseln Sie in das Verzeichnis ``infrastructure``. Der Rabbit MQ Message Broker wird über den folgenden Befehl gestartet. 
+
+
+```
+	docker compose -d
+```
 
 
 ## AMQP Dependency prüfen  
@@ -90,3 +94,12 @@ public class AmqpReceiver  {
 ## AMQP Consumer starten   
 
 Starten Sie die Spring Boot Anwendung über die IDE. Es müssten zyklisch Nachrichten auf die Konsole ausgegeben werden. 
+
+
+## Shutdown 
+
+Wenn Sie mit der Übung fertig sind, dann stoppen Sie bitte den RabbitMQ Server. 
+
+```
+	docker compose down 
+```
