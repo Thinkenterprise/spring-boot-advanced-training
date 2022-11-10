@@ -120,7 +120,7 @@ public class MongoRouteRepositoryTest {
 	
 	@Test
 	public void testGetAll() {
-		Assert.assertTrue(mongoRouteRepository.findAll().size()==3);
+		Assertions.assertTrue(mongoRouteRepository.findAll().size()==3);
 	}
 	 
 }

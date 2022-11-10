@@ -63,7 +63,7 @@ public class JpaRouteRepositoryTest {
 	
 	@Test
 	public void testGetAll() {
-		Assert.assertTrue(jdbcRouteRepository.findAll().size()==3);
+		Assertions.assertTrue(jdbcRouteRepository.findAll().size()==3);
 	}
 	 
 }
