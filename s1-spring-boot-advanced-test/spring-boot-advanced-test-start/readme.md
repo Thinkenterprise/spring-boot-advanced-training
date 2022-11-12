@@ -19,13 +19,13 @@ public class TestRouteController {
 public class TestRouteController {
 	
 	@BeforeAll
-    static void beforeAll() {
+    public static void beforeAll() {
         System.out.println("Before all test methods");
     }
  
     @BeforeEach
-    static void beforeEcha() {
-        System.out.println("After all test methods");
+	public void beforeEach() {
+        System.out.println("Before each individual test method");
     }
 	
 }

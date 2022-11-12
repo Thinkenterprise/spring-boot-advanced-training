@@ -48,32 +48,6 @@ Die Fluggesellschaft plant die Umstellung der Relationalen Datenbank auf eine re
 }
 ```
 
-## Schema und Daten in Datenbank laden 
-
-Das automatische erstellen des Datenbank-Schemata und Laden von Daten in die Datenbank wird nicht von der Autoconfiguration unterstützt und muss explizit implementiert werden. Daher müssen Sie den Code in der Klasse ``RouteDatabase`` ausdokumentieren. 
-
-
-```java
-@Configuration
-public class RouteDatabase {
-
-	 	@Bean
-	    public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
-
-	        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
-	        initializer.setConnectionFactory(connectionFactory);
-
-	        CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
-	        populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
-	        populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
-	        initializer.setDatabasePopulator(populator);
-
-	        return initializer;
-	    }
-}
-
-```
-
 ## Test schreiben 
 
 ```java
