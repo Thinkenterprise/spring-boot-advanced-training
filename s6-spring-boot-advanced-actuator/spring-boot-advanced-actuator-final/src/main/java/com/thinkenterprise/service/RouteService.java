@@ -34,14 +34,13 @@ public class RouteService {
 
 	private boolean serviceStatus;
 
-	private Random random = new Random(0);
+	private Random random = new Random();
 
-	private Stack<Long> values = new Stack<>();
+	private Stack<Integer> values = new Stack<>();
 
 	private MeterRegistry meterRegistry;
 	private Counter businessFunctionCounter;
-	private Gauge businessValueGauge;
-
+	
 	@Autowired
 	public RouteService(MeterRegistry meterRegistry) {
 		this.meterRegistry = meterRegistry;
@@ -53,21 +52,16 @@ public class RouteService {
 		
 		meterRegistry.gauge("businessValueGauge", values,v -> values.size());
 		
-
-		/*
-		businessValueGauge = Gauge.builder("businessValueGauge", values, v -> values.size())
-				.description("businessFunctionGauge").tags("business", "service").register(this.meterRegistry);
-				*/
 	}
 
 	@Timed(value = "businessFunctionTimer", extraTags = { "business",
 			"service" }, description = "Execution time of business function")
-	public Long businessFunction() {
+	public Integer businessFunction() {
 
-		Long randomValue = random.nextLong(1000L);
+		Integer randomValue = random.nextInt(1000);
 
 		try {
-			Thread.sleep(random.nextLong(1000L));
+			Thread.sleep(Math.abs(randomValue));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -31,20 +31,21 @@ Zunächst implmentieren Sie die Metrik über die Annotation  ``@Timer`` und füg
 @Service
 public class RouteService {
 
-	private Random random = new Random(0);
+private Random random = new Random();
 
 	@Timed(value = "businessFunctionTimer", extraTags = { "business",
 			"service" }, description = "Execution time of business function")
-	public Long businessFunction() {
+	public Integer businessFunction() {
 
-		Long randomValue = random.nextLong(1000L);
+		Integer randomValue = random.nextInt(1000);
 
 		try {
-			Thread.sleep(random.nextLong(1000L));
+			Thread.sleep(Math.abs(randomValue));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
+	
 		return randomValue;
 	}
 

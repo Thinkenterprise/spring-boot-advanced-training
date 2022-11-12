@@ -25,9 +25,9 @@ import org.springframework.stereotype.Service;
 public class RouteService {
 
 	
-	public Long businessFunction() {
+	public Integer businessFunction() {
 
-	return 0L;
+	return 0;
 	}
 	
 }
