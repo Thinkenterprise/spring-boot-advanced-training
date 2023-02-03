@@ -117,7 +117,7 @@ public class ReactiveTests {
 	@Test
 	public void createFluxWithFilterAndSchedulerOperator() {
 
-		Flux.range(1, 500).publishOn(Schedulers.elastic()).filter(i -> i < 20).subscribe(i -> System.out.println(i));
+		Flux.range(1, 500).publishOn(Schedulers.boundedElastic()).filter(i -> i < 20).subscribe(i -> System.out.println(i));
 	}
 
 	@Test

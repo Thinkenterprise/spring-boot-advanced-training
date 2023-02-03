@@ -20,13 +20,14 @@
 
 package com.thinkenterprise.domain.route;
 
-import com.thinkenterprise.domain.core.AbstractEntity;
-
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.thinkenterprise.domain.core.AbstractEntity;
+
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
 
 
 @Entity
