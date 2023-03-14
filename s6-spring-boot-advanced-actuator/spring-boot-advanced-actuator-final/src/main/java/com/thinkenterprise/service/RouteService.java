@@ -19,15 +19,13 @@
 package com.thinkenterprise.service;
 
 import java.util.Random;
-import java.util.Stack;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.micrometer.core.annotation.Timed;
-import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 
 @Service
 public class RouteService {
@@ -36,28 +34,36 @@ public class RouteService {
 
 	private Random random = new Random();
 
-	private Stack<Integer> values = new Stack<>();
-
-	private MeterRegistry meterRegistry;
-	private Counter businessFunctionCounter;
+	//private MeterRegistry meterRegistry;
+	private ObservationRegistry observationRegistry;
+	
+	//private Timer businessFunctionTimer;
+	private Observation businessFunctionObservation;
 	
 	@Autowired
-	public RouteService(MeterRegistry meterRegistry) {
-		this.meterRegistry = meterRegistry;
-
-		businessFunctionCounter = Counter.builder("businessFunctionCounter")
+	public RouteService(MeterRegistry meterRegistry, ObservationRegistry observationRegistry) {
+		//this.meterRegistry = meterRegistry;
+		this.observationRegistry = observationRegistry;
+		
+		// The old implementation based on the meter registry 
+		/*
+		businessFunctionTimer = Timer.builder("businessFunctionTimeMeter")
 				.description("number of business function calls").tags("business", "service")
 				.register(this.meterRegistry);
 		
+		*/
 		
-		meterRegistry.gauge("businessValueGauge", values,v -> values.size());
-		
+		// The new implementation based on the observation registry 
+		this.businessFunctionObservation = Observation.createNotStarted("businessFunctionTimerObservation", this.observationRegistry);
 	}
 
-	@Timed(value = "businessFunctionTimer", extraTags = { "business",
-			"service" }, description = "Execution time of business function")
-	public Integer businessFunction() {
+	
+	// The old implementation based on the meter registry 
+	/*
+	public void businessFunctionMeter() {
 
+		Long timeStart = System.nanoTime();
+		
 		Integer randomValue = random.nextInt(1000);
 
 		try {
@@ -66,15 +72,30 @@ public class RouteService {
 			e.printStackTrace();
 		}
 
-		if (randomValue > 500L)
-			values.push(randomValue);
-		else if (!values.empty())
-			values.pop();
-
-		businessFunctionCounter.increment();
-		return randomValue;
+		Long timeStop= System.nanoTime();
+		
+		businessFunctionTimer.record(Duration.ofNanos(timeStop-timeStart));
 	}
+	*/
+	
+	// The new implementation based on the observation registry 
+	public void businessFunctionObservation() {
 
+		businessFunctionObservation.start();
+		
+		Integer randomValue = random.nextInt(1000);
+
+		try {
+			Thread.sleep(Math.abs(randomValue));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		businessFunctionObservation.stop();
+		
+	}
+	
+	
 	public boolean getServiceStatus() {
 		return serviceStatus;
 	}

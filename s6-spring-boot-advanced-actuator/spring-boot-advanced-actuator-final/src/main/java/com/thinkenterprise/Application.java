@@ -42,6 +42,7 @@ public class Application {
 
     @Scheduled(initialDelay = 10000, fixedDelay = 10000)
     public void changeStatus() {
-        routeService.businessFunction();
+        //routeService.businessFunctionMeter();
+        routeService.businessFunctionObservation();
     }
 }
