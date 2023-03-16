@@ -17,7 +17,7 @@
  * @author Michael Schaefer
  */
 
-package com.thinkenterprise.client;
+package com.thinkenterprise;
 
 import java.io.IOException;
 

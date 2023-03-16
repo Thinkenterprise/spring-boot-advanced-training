@@ -19,16 +19,42 @@
 
 package com.thinkenterprise;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 
+import com.thinkenterprise.domain.route.Route;
+
 @SpringBootApplication
-public class ReactiveApplication {
+public class ReactiveApplication implements ApplicationRunner {
 	
+	@Autowired RouteService routeService;
 	
     public static void main(String[] args) {
     	SpringApplication.run(ReactiveApplication.class, args);
        
    }
+
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		
+		// Build my own client and execute the commands manually to make the Web Remote Call 
+		WebClient client = WebClient.create("http://localhost:8080");
+    	
+    	client
+    	.get()
+    	.uri("/routes")
+    	.exchangeToFlux(response -> response.bodyToFlux(Route.class))
+    	.log()
+    	.blockLast();
+		
+		
+    	// Use the Proxy Implementation to make the Web Romote Call 
+		routeService.routes().log().blockLast();
+		
+	}
 }
