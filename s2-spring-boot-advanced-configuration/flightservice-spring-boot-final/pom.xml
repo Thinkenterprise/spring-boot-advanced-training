@@ -57,6 +57,11 @@
    			 <artifactId>s2-flightservice-spring-boot-starter-final</artifactId>
    			 <version>${flightservice.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.thinkenterprise</groupId>
+			<artifactId>s2-flightservice</artifactId>
+			<version>${flightservice.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

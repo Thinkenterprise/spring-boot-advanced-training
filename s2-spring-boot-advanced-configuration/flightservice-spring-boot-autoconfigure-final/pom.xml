@@ -48,6 +48,7 @@
 			<groupId>com.thinkenterprise</groupId>
 			<artifactId>s2-flightservice</artifactId>
 			<version>${flightservice.version}</version>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
  

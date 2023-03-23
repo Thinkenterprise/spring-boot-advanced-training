@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thinkenterprise.domain.route.Flight;
-import com.thinkenterprise.flightservice.model.FlightPrice;
 import com.thinkenterprise.flightservice.service.FlightService;
 import com.thinkenterprise.repository.FlightRepository;
 
@@ -45,7 +44,7 @@ public class FlightServiceController {
 	@RequestMapping("/flightService")
     public String flightService() {
 		List<Flight> flights = flightRepository.findAll();
-       	List<FlightPrice> flightPrices  = flights.stream().map(flight -> (FlightPrice)flight).collect(Collectors.toList());
+       	List<Double> flightPrices  = flights.stream().map(flight -> flight.getPrice()).collect(Collectors.toList());
        	return String.valueOf(flightService.totalPrice(flightPrices));
     }
 }

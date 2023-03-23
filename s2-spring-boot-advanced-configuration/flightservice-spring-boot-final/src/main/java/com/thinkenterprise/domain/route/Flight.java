@@ -4,13 +4,12 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thinkenterprise.domain.core.AbstractEntity;
-import com.thinkenterprise.flightservice.model.FlightPrice;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Flight extends AbstractEntity implements FlightPrice {
+public class Flight extends AbstractEntity {
 
 	private double price;
 	
