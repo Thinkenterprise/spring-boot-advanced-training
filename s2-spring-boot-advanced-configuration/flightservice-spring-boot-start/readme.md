@@ -11,7 +11,7 @@ Die Fluggesellschaft stellt einen Service bereit, der für die Routenverwaltung 
 ```java
 	<dependency>
 		<groupId>com.thinkenterprise</groupId>
-   		<artifactId>s2-flightservice-spring-boot-starter-start</artifactId>
+   		<artifactId>s2-flightservice-spring-boot-starter</artifactId>
    		<version>${flightservice.version}</version>
 	</dependency>
 
