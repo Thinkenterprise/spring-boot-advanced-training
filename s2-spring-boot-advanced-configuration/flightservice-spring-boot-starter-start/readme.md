@@ -12,7 +12,7 @@ Anwendung zur Verfügung stellt.
 ```java
  <dependency>
        <groupId>com.thinkenterprise</groupId>
-       <artifactId>s2-flightservice-spring-boot-autoconfigure-start</artifactId>
+       <artifactId>s2-flightservice-spring-boot-autoconfigure</artifactId>
        <version>${flightservice.version}</version>
  </dependency>
 
