@@ -24,14 +24,14 @@ import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.stereotype.Component;
 
-import com.thinkenterprise.service.RouteService;
+import com.thinkenterprise.service.RouteServiceMetricAPI;
 
 @Component
 @Endpoint(id="routeService")
 public class RouteServiceEndpoint {
 
 	@Autowired
-	private RouteService routeService;
+	private RouteServiceMetricAPI routeService;
 	
 
 	@ReadOperation

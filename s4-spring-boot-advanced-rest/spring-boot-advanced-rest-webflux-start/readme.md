@@ -1,9 +1,8 @@
 Die Fluggesellschaft möchte den Route-Service auf ein reaktive Web API umstellen.
 1. Erstellen Sie einen reaktiven Web Controller, der eine statische List von Routen zurückgibt.
-2. Die Fluggesellschaft möchte zukünftig mehr funktional programmieren. Versuchen Sie das gleiche über Functional APIs zu realieren.
 3. Schreiben Sie einen Test für den Controller Ansatz der das neue Reactive API testet.
 
-
+Das Umstellen der Controller auf Functional APIs kann zusätzlich implementiert werden, sofern Zeit vorhanden ist. 
 
 
 ## Webflux Starter hinzufügen 
@@ -43,7 +42,7 @@ public class ReactiveRouteController {
 ```
 
 Damit der Controller von anderen noch kommenden Reactive Implementierungen unterscheiden werden kann ordnen wir ihn dem Profile **controller** zu, das 
-vr dem Start über die **application.properties** gesetzt werden muss. 
+vor dem Start über die **application.properties** gesetzt werden muss. 
 
 
 ```
@@ -54,17 +53,47 @@ spring:
 
 ```
 
-
 ### Anwendung starten und testen 
  
 
-Die ANwendung kann auch über die IDE gestartet werden, hier wird der Start über die Console gezeigt. 
+Die Anwendung kann auch über die IDE gestartet werden, hier wird der Start über die Console gezeigt. 
 
 ```
 mvn clean package 
 mvn spring-boot:run
 curl localhost:8080/routes
 ```
+
+
+## Controller Testen 
+
+
+```
+
+@ActiveProfiles("controller")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {"server.port=8080"})
+public class ReactiveRouteControllerTest {
+
+	@Autowired
+	private WebTestClient webTestClient;
+
+	@Test
+	public void routes() {
+
+		webTestClient.get()
+		             .uri("/routes")
+		             .exchange()
+		             .expectBodyList(Route.class)
+		             .hasSize(3);
+	}
+	
+
+}
+
+```
+
+
+
 
 
 
@@ -92,7 +121,6 @@ public class ReativeFunctionalConfiguration {
 ```
 
 
-
 ```
 spring:
   profiles:
@@ -100,7 +128,6 @@ spring:
 
 
 ```
-
 
 
     
@@ -114,6 +141,7 @@ mvn clean package
 mvn spring-boot:run
 curl localhost:8080/routes
 ```
+
 
 
 

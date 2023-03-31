@@ -19,20 +19,27 @@
 
 package com.thinkenterprise;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ProblemDetail;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.service.client.RouteService;
 
 @SpringBootApplication
 public class ReactiveApplication implements ApplicationRunner {
 	
+	public final static Logger logger = LoggerFactory.getLogger(ReactiveApplication.class);
+	
 	@Autowired RouteService routeService;
+	@Autowired WebClient webClient;
 	
     public static void main(String[] args) {
     	SpringApplication.run(ReactiveApplication.class, args);
@@ -41,19 +48,22 @@ public class ReactiveApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+	
 		
-		// Build my own client and execute the commands manually to make the Web Remote Call 
-		WebClient client = WebClient.create("http://localhost:8080");
-    	
-    	client
-    	.get()
-    	.uri("/routes")
-    	.exchangeToFlux(response -> response.bodyToFlux(Route.class))
-    	.log()
-    	.blockLast();
+		try {
+			webClient.get()
+		     		 .uri("/routes")
+		     		 .retrieve()
+		     		 .bodyToFlux(Route.class)
+		     		 .log()
+		     		 .blockLast();
+			
+		} catch (WebClientResponseException e) {
+			ProblemDetail problemDetail= e.getResponseBodyAs(ProblemDetail.class);
+			logger.info(problemDetail.getTitle());
+		}
 		
 		
-    	// Use the Proxy Implementation to make the Web Romote Call 
 		routeService.routes().log().blockLast();
 		
 	}

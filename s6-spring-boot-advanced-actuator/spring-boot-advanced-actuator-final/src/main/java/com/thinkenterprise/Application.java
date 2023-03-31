@@ -23,18 +23,17 @@ package com.thinkenterprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.thinkenterprise.service.RouteService;
+import com.thinkenterprise.service.RouteServiceMetricAPI;
 
 @SpringBootApplication
 @EnableScheduling
 public class Application {
 
 	@Autowired
-    private RouteService routeService;
+    private RouteServiceMetricAPI routeService;
     
     public static void main(String[] args) {
        SpringApplication.run(Application.class, args);
@@ -43,6 +42,6 @@ public class Application {
     @Scheduled(initialDelay = 10000, fixedDelay = 10000)
     public void changeStatus() {
         //routeService.businessFunctionMeter();
-        routeService.businessFunctionObservation();
+        routeService.businessFunctionMeter();
     }
 }

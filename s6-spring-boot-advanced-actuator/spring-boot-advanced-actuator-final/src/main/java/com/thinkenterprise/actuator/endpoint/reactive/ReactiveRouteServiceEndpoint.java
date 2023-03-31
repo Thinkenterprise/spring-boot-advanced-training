@@ -23,7 +23,7 @@ import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import org.springframework.stereotype.Component;
 
-import com.thinkenterprise.service.RouteService;
+import com.thinkenterprise.service.RouteServiceMetricAPI;
 
 import reactor.core.publisher.Mono;
 
@@ -32,7 +32,7 @@ import reactor.core.publisher.Mono;
 public class ReactiveRouteServiceEndpoint {
 
 	@Autowired
-	private RouteService routeService;
+	private RouteServiceMetricAPI routeService;
 	
 	
 	@ReadOperation
