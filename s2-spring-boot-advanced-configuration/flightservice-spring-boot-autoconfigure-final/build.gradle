@@ -19,6 +19,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-autoconfigure-processor'
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
-	implementation 'com.thinkenterprise:s2-flightservice:0.0.1-SNAPSHOT'
+	implementation 'com.thinkenterprise:flightservice:0.0.1-SNAPSHOT'
 }
 

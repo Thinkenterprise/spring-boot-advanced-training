@@ -10,7 +10,7 @@ Die Fluggesellschaft stellt einen Service bereit, der für die Routenverwaltung 
 ```java
 	<dependency>
 		<groupId>com.thinkenterprise</groupId>
-		<artifactId>s2-flightservice</artifactId>
+		<artifactId>flightservice</artifactId>
 		<version>${flightservice.version}</version>
 	</dependency>
 
