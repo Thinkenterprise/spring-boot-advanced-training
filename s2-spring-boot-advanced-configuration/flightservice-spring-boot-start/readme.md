@@ -25,7 +25,7 @@ Die Fluggesellschaft stellt einen Service bereit, der für die Routenverwaltung 
 
 ```java
 @Entity
-public class Flight extends AbstractEntity implements FlightPrice {
+public class Flight extends AbstractEntity {
 }
 ```
 
@@ -47,7 +47,7 @@ public class FlightServiceController {
 	@RequestMapping("/flightService")
     public String flightService() {
 		List<Flight> flights = flightRepository.findAll();
-       	List<FlightPrice> flightPrices  = flights.stream().map(flight -> (FlightPrice)flight).collect(Collectors.toList());
+       	List<Double> flightPrices  = flights.stream().map(flight -> flight.getPrice()).collect(Collectors.toList());
        	return String.valueOf(flightService.totalPrice(flightPrices));
     }
 }
