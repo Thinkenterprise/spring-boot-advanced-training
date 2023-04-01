@@ -7,14 +7,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfiguration {
 
-	
 	@Bean
 	public WebClient webClient() {
-		
 		WebClient webClient =WebClient.builder()
 				                      .baseUrl("http://localhost:8080")
 				                      .build();
 		return webClient;
 	}
-	
 }
