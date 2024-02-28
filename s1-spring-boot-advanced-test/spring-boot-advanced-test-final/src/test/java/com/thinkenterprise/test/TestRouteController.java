@@ -1,14 +1,8 @@
 package com.thinkenterprise.test;
 
-import java.util.stream.Stream;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import com.thinkenterprise.domain.route.Route;
+import com.thinkenterprise.repository.RouteRepository;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,18 +12,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.MethodMode;
 import org.springframework.test.context.junit.jupiter.EnabledIf;
 
-import com.thinkenterprise.domain.route.Route;
-import com.thinkenterprise.repository.RouteRepository;
+import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 public class TestRouteController {
-	
-	
+
 	@AfterAll
 	static void afterAll() {
 		System.out.println("After all test methods");
@@ -60,14 +49,11 @@ public class TestRouteController {
                 
         );
     }
-	
-	
-	
+
 	@Test
-	@DisplayName("Checking if repository is loaded with data by Autowire")
-	public void checkRestTemplateWithAutowire(@Autowired TestRestTemplate restTemplate) {
-		Iterable<Route> iterable = restTemplate.getForObject("/routes", Iterable.class);
-		Assertions.assertTrue(iterable.iterator().hasNext());
+	@DisplayName("Checking if repository is loaded with data by @Autowire")
+	public void checkRestClientCreation(@Autowired RouteRepository routeRepository) {
+		Assertions.assertTrue(routeRepository.count() > 0);
 	}
 
 	@Test
