@@ -26,7 +26,7 @@ class AmqpSenderTest {
     AmqpSender sender;
 
     @Test
-    void containerStartAndRunning() {
+    void containerStartintAndRunning() {
         assertThat(rabbitMQContainer.isCreated()).isTrue();
         assertThat(rabbitMQContainer.isRunning()).isTrue();
     }
