@@ -23,6 +23,7 @@ package com.thinkenterprise.repository.jpa;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,13 +36,13 @@ import jakarta.persistence.TypedQuery;
 public class JpaRouteRepository implements RouteRepository {
 	
 	@Autowired
+	private JdbcClient jdbcClient;
+
+	@Autowired
 	private EntityManager entityManager;
-	
-	
+
 	public List<Route> findAll() {
-		
-		TypedQuery<Route> query = entityManager.createQuery("select r from Route r",Route.class);
-		return query.getResultList();
+		return jdbcClient.sql("select * from Route").query(Route.class).list();
 	}
 	
 	public Route find(Long id) {
