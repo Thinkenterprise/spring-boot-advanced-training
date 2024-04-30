@@ -10,27 +10,26 @@ Die Fluggesellschaft möchte die Implementierung des Route-Service auf einen dir
 ```java
 @Repository
 public class JpaRouteRepository implements RouteRepository {
-	
-	@Autowired
-	private EntityManager entityManager;
-	
-	
-	public List<Route> findAll() {
-		
-		TypedQuery<Route> query = entityManager.createQuery("select r from Route r",Route.class);
-		return query.getResultList();
-	}
-	
-	public Route find(Long id) {
-		return entityManager.find(Route.class, id);
-	}
-	
-	public Route save(Route route) {
-		 entityManager.persist(route);
-		 return route;
-	}
 
-	
+    @Autowired
+    private JdbcClient jdbcClient;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    public List<Route> findAll() {
+        return jdbcClient.sql("select * from Route").query(Route.class).list();
+    }
+
+    public Route find(Long id) {
+        return entityManager.find(Route.class, id);
+    }
+
+    @Transactional
+    public Route save(Route route) {
+        entityManager.persist(route);
+        return route;
+    }
 }
 
 ```

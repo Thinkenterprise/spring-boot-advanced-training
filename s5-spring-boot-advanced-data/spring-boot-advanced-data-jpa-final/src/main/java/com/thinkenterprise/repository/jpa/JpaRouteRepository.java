@@ -54,6 +54,4 @@ public class JpaRouteRepository implements RouteRepository {
 		 entityManager.persist(route);
 		 return route;
 	}
-
-	
 }
