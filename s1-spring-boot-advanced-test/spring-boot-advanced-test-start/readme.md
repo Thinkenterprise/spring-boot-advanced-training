@@ -11,7 +11,7 @@ public class TestRouteController {
 
 ```
 
-## BeforeAll & BeforeEach vs. BeforeCalss & BeforeEach
+## BeforeAll & BeforeEach vs. BeforeClass & BeforeEach
 
 ```java
 	
@@ -65,12 +65,11 @@ public void contextLoad() {
 ## Autowired 
 
 ```java
-	@Test
-	@DisplayName("Checking if repository is loaded with data by Autowire")
-	public void checkRouteRepositoryWithAutowire(@Autowired TestRestTemplate restTemplate) {
-		Iterable<Route> iterable = restTemplate.getForObject("/routes", Iterable.class);
-		Assertions.assertTrue(iterable.iterator().hasNext());
-	} 
+    @Test
+    @DisplayName("Checking if repository is loaded with data by @Autowire")
+    public void checkRouteRepositoryCreation(@Autowired RouteRepository routeRepository) {
+        Assertions.assertTrue(routeRepository.count() > 0);
+    }
 
 ```
 

@@ -52,7 +52,7 @@ public class TestRouteController {
 
 	@Test
 	@DisplayName("Checking if repository is loaded with data by @Autowire")
-	public void checkRestClientCreation(@Autowired RouteRepository routeRepository) {
+	public void checkRouteRepositoryCreation(@Autowired RouteRepository routeRepository) {
 		Assertions.assertTrue(routeRepository.count() > 0);
 	}
 
