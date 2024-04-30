@@ -8,11 +8,11 @@ Die Fluggesellschaft möchte die Web-APIs des Route-Service über die OpenAPI 3
 ## SpringDoc Dependencies einfügen  
 
 ```
-     <dependency>
-		<groupId>org.springdoc</groupId>
-		<artifactId>springdoc-openapi-ui</artifactId>
-		<version>1.6.9</version>
-	</dependency>
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>${springdoc.openapi.starter.webmvc.ui.version}</version>
+</dependency>
 ```
 
 
