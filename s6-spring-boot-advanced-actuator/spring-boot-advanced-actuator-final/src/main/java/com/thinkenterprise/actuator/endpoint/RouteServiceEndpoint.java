@@ -41,7 +41,7 @@ public class RouteServiceEndpoint {
 	
 	// Its only working if the compiler store parameter infos see here 
 	// https://github.com/spring-projects/spring-boot/issues/13261
-	@ReadOperation
+	//@ReadOperation
 	public Boolean getServiceStatus(@Selector Boolean parameter) {
 		return parameter;
 	}

@@ -20,33 +20,16 @@
 package com.thinkenterprise;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-
-import com.thinkenterprise.service.RouteServiceMetricAPI;
 
 @SpringBootApplication
-@EnableScheduling
 public class Application {
 	
-	private static final Log logger = LogFactory.getLog(Application.class);
-
-	@Autowired
-    private RouteServiceMetricAPI routeService;
-	
-	public static void main(String[] args) {
+    
+    public static void main(String[] args) {
        SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 10000)
-    public void changeStatus() {
-    	logger.info("home() has been called");
-        routeService.businessFunctionMeter();
-    }
-        
+  
 }
