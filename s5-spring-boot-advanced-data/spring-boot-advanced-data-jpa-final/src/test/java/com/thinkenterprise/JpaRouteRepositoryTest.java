@@ -15,11 +15,11 @@ import com.thinkenterprise.repository.jpa.RouteRepository;
 public class JpaRouteRepositoryTest {
 
 	@Autowired
-	private JpaRouteRepository jdbcRouteRepository;
+	private JpaRouteRepository jpaRouteRepository;
 	
 	@Test
 	public void testGetAll() {
-		assertTrue(jdbcRouteRepository.findAll().size()==3);
+		assertTrue(jpaRouteRepository.findAll().size()==3);
 	}
 	 
 }
