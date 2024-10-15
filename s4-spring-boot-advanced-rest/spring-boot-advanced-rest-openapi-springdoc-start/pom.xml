@@ -26,7 +26,7 @@
 		<swagger.annotations>1.6.14</swagger.annotations>
 		<jackson.databind.nullable>0.2.6</jackson.databind.nullable>
 		<maven.surefire.version>3.5.1</maven.surefire.version>
-		<openapi.generator.maven.plugin.version>7.2.0</openapi.generator.maven.plugin.version>
+		<openapi.generator.maven.plugin.version>7.9.0</openapi.generator.maven.plugin.version>
 	</properties>
 
 
