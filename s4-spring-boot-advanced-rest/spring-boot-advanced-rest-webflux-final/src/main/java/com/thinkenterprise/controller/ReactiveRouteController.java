@@ -70,11 +70,12 @@ public class ReactiveRouteController {
 	}
 	
 	
+	//@RequestMapping(value ="stream", produces = "application/stream+json")
 	@RequestMapping("stream")
-	public Flux<Route> routesAsStream() {	
+	public Flux<Route> routesAsStream() {		
 		  return Flux.<Route> generate(sink ->
 		  sink.next(airline.get(random.nextInt(airline.size()))))
-		  .delayElements(Duration.ofMillis(1000));
+		  .delayElements(Duration.ofMillis(1000)); 
 	}
 	
 	@RequestMapping("throwException")
