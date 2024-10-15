@@ -23,7 +23,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<spring.boot.version>3.2.2</spring.boot.version>
-		<swagger.annotations>1.6.13</swagger.annotations>
+		<swagger.annotations>1.6.14</swagger.annotations>
 		<jackson.databind.nullable>0.2.6</jackson.databind.nullable>
 		<maven.surefire.version>3.2.5</maven.surefire.version>
 		<openapi.generator.maven.plugin.version>7.2.0</openapi.generator.maven.plugin.version>
