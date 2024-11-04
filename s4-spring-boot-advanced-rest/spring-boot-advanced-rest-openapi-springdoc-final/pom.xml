@@ -24,7 +24,7 @@
 		<springdoc.openapi.starter.webmvc.ui.version>2.6.0</springdoc.openapi.starter.webmvc.ui.version>
 		<swagger.annotations>1.6.14</swagger.annotations>
 		<jackson.databind.nullable>0.2.6</jackson.databind.nullable>
-		<maven.surefire.version>3.5.1</maven.surefire.version>
+		<maven.surefire.version>3.5.2</maven.surefire.version>
 		<openapi.generator.maven.plugin.version>7.9.0</openapi.generator.maven.plugin.version>
 	</properties>
 
