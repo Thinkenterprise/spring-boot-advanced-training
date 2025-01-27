@@ -21,7 +21,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<spring.boot.version>3.3.5</spring.boot.version>
-		<springdoc.openapi.starter.webmvc.ui.version>2.6.0</springdoc.openapi.starter.webmvc.ui.version>
+		<springdoc.openapi.starter.webmvc.ui.version>2.8.4</springdoc.openapi.starter.webmvc.ui.version>
 		<swagger.annotations>1.6.14</swagger.annotations>
 		<jackson.databind.nullable>0.2.6</jackson.databind.nullable>
 		<maven.surefire.version>3.5.2</maven.surefire.version>
