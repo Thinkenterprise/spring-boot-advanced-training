@@ -32,7 +32,7 @@ import com.thinkenterprise.message.amqp.AmqpSender;
 public class AmqProducerCallerScheduling implements BeanFactoryAware {
 
 	
-	public static Long counter = new Long(0);
+	public static Long counter = 0L;
 
 	private static BeanFactory context;
 

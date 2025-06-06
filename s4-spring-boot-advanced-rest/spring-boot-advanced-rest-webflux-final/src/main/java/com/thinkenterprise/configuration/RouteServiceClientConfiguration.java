@@ -14,7 +14,7 @@ public class RouteServiceClientConfiguration {
 	@Bean
 	public RouteService routeService(WebClient webClient) {
 		
-		  return HttpServiceProxyFactory.builder(WebClientAdapter.forClient(webClient))
+		  return HttpServiceProxyFactory.builderFor(WebClientAdapter.create(webClient))
 				                        .build()
 		                                .createClient(RouteService.class);	
 	

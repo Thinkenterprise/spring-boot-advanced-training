@@ -30,7 +30,7 @@ import com.thinkenterprise.message.amqp.AmqpProducer;
 public class AmqProducerCallerScheduling  {
 
 	 
-	public static Long counter = Long.valueOf(0);
+	public static Long counter = 0L;
 
 	@Autowired
 	private AmqpProducer amqpProducer;
