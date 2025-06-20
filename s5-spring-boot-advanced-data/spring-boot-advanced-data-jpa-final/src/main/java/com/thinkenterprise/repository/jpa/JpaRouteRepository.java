@@ -24,12 +24,14 @@ import com.thinkenterprise.domain.route.Route;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Profile("jpa")
 public class JpaRouteRepository implements RouteRepository {
 
 	@Autowired

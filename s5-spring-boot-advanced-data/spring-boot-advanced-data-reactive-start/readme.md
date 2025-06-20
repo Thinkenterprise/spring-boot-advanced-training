@@ -52,7 +52,6 @@ Die Fluggesellschaft plant die Umstellung der Relationalen Datenbank auf eine re
 
 ```java
 @DataR2dbcTest
-@ComponentScan(basePackageClasses = {Application.class})
 public class RouteRepositoryTests {
 
     @Autowired

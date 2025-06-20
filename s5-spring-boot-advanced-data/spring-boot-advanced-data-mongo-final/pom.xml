@@ -91,9 +91,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 </project>

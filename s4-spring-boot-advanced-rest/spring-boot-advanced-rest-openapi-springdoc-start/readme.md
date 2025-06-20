@@ -7,6 +7,16 @@ Die Fluggesellschaft möchte die Web-APIs des Route-Service über die OpenAPI 3
 
 ## SpringDoc Dependencies einfügen  
 
+Führen folgende Property für die Versionierung von Spring Doc ein. 
+
+
+```
+<properties>
+	<springdoc.openapi.starter.webmvc.ui.version>2.6.0</springdoc.openapi.starter.webmvc.ui.version>
+</properties>
+```
+
+
 ```
 <dependency>
     <groupId>org.springdoc</groupId>

@@ -35,9 +35,9 @@ Der Bereich `security` befindet sich nach der Anpassung "unterhalb" der mit dem 
 
 ```
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableMethodSecurity
 @Profile("nonReactive")
-public class OAuth2JWTSecurityConfiguration extends GlobalMethodSecurityConfiguration  {
+public class OAuth2JWTSecurityConfiguration  {
       
 }
 

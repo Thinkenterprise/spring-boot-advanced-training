@@ -69,8 +69,7 @@ public class ReactiveRouteController {
 		return Mono.just(new Route("LH401","FRA","NYC"));
 	}
 	
-	
-	//@RequestMapping(value ="stream", produces = "application/stream+json")
+		
 	@RequestMapping("stream")
 	public Flux<Route> routesAsStream() {		
 		  return Flux.<Route> generate(sink ->

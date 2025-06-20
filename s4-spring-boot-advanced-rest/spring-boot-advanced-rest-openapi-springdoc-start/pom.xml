@@ -27,6 +27,7 @@
 		<jackson.databind.nullable>0.2.6</jackson.databind.nullable>
 		<maven.surefire.version>3.5.2</maven.surefire.version>
 		<openapi.generator.maven.plugin.version>7.9.0</openapi.generator.maven.plugin.version>
+		
 	</properties>
 
 
@@ -69,6 +70,7 @@
 			<artifactId>jackson-databind-nullable</artifactId>
 			<version>${jackson.databind.nullable}</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

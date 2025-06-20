@@ -7,30 +7,24 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.web.client.RestClient;
 
 import com.thinkenterprise.domain.route.Route;
-import org.springframework.web.client.RestClient;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class RouteControllerTest {
 
-    @Autowired
-    private TestRestTemplate testRestTemplate;
-
+  
     @LocalServerPort
     int port;
 

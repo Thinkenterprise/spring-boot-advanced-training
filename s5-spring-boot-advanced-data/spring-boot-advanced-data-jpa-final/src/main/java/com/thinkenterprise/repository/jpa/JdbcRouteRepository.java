@@ -2,6 +2,7 @@ package com.thinkenterprise.repository.jpa;
 
 import com.thinkenterprise.domain.route.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @Repository
+@Profile("jdbc")
 public class JdbcRouteRepository implements RouteRepository {
 
     @Autowired

@@ -40,7 +40,6 @@ public class RouteController {
     private RouteRepository routeRepository;
     
 	
-
     @RequestMapping
     @PreAuthorize("hasAuthority('SCOPE_read')")
     public ResponseEntity<Iterable<Route>> findAll() {
